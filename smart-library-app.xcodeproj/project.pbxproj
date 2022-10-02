@@ -68,7 +68,6 @@
 				F814595E28DDA64200390B65 /* Assets.xcassets */,
 				F814596028DDA64200390B65 /* smart_library_app.entitlements */,
 				F814596128DDA64200390B65 /* Preview Content */,
-				F8357C7228E6F234005E4C5E /* SearchView.swift */,
 				F8722D9328E942A30037C751 /* Decodables */,
 				F8722D9828E945F10037C751 /* BookDatabase.swift */,
 			);
@@ -95,6 +94,7 @@
 		F895D6BE28E95D950042A38C /* Search */ = {
 			isa = PBXGroup;
 			children = (
+				F8357C7228E6F234005E4C5E /* SearchView.swift */,
 				F895D6BF28E95DB60042A38C /* BookListItem.swift */,
 			);
 			path = Search;
