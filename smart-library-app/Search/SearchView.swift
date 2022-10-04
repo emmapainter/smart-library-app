@@ -50,10 +50,8 @@ struct SearchView: View {
                     BookListItem(book: book)
                 }
                 .searchable(text: $searchText)
-                .onChange(of: searchText) { text in
-                    if text.count >= 3 {
-                        search(for: text)
-                    }
+                .onSubmit(of: .search) {
+                    search(for: searchText)
                 }
             }
         }
