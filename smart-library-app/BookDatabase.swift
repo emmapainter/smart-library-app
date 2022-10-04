@@ -52,8 +52,6 @@ class BookDatabase: NSObject {
                     if books.count == self.MAX_ITEMS_PER_REQUEST && self.currentRequestIndex + 1 < self.MAX_REQUESTS && !self.terminate {
                         self.currentRequestIndex += 1
                         self.searchAllBooksFor(text: text, completion: completion)
-                    } else {
-                        self.currentRequestIndex = 0
                     }
                 }
             } catch let err {
@@ -64,6 +62,7 @@ class BookDatabase: NSObject {
     
     func searchAllBooksFor(text: String, completion:@escaping ([BookData]) -> ()) {
         terminate = false
+        currentRequestIndex = 0
         searchGoogleBooksFor(text: text, completion: completion)
     }
 }
