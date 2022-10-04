@@ -11,7 +11,20 @@ import SwiftUI
 struct smart_library_appApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            TabView {
+                ContentView()
+                    .tabItem {
+                        Label("Home", systemImage: "house")
+                    }
+                ContentView()
+                    .tabItem {
+                        Label("Bookshelf", systemImage: "books.vertical")
+                    }
+                SearchView()
+                    .tabItem {
+                        Label("Search", systemImage: "magnifyingglass")
+                    }
+            }
         }
     }
 }
