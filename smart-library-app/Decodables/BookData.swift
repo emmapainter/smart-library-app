@@ -11,7 +11,7 @@ import UIKit
 class BookData: NSObject, Decodable, Identifiable {
     var id = UUID()
     var isbn13: String?
-    var title: String
+    var title: String?
     var authors: String?
     var publisher: String?
     var publicationDate: String?
@@ -32,7 +32,7 @@ class BookData: NSObject, Decodable, Identifiable {
         let imageContainer = try? bookContainer.nestedContainer(keyedBy: ImageKeys.self, forKey: .imageLinks)
         
         // get the book info
-        title = try bookContainer.decode(String.self, forKey: .title)
+        title = try? bookContainer.decode(String.self, forKey: .title)
         publisher = try? bookContainer.decode(String.self, forKey: .publisher)
         publicationDate = try? bookContainer.decode(String.self, forKey: .publicationDate)
         bookDescription = try? bookContainer.decode(String.self, forKey: .bookDescription)

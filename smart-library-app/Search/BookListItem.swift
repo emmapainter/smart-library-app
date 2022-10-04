@@ -24,7 +24,7 @@ struct BookListItem: View {
                 .frame(width: 60, height: 90)
                 .cornerRadius(10)
             VStack(alignment: .leading) {
-                Text(book.title)
+                Text(book.title ?? "-")
                     .font(.title3)
                     .fontWeight(.semibold)
                     .lineLimit(2)
