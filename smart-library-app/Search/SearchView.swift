@@ -15,11 +15,20 @@ struct SearchView: View {
     let searchTypes = ["My Books", "All Books", "Users"]
     let bookDatabase = BookDatabase()
     
-    func searchAllBooks(for text:  String) {
-        bookSearchResults = []
-        bookDatabase.searchAllBooksFor(text: text, completion: {(books) -> Void in
-            bookSearchResults.append(contentsOf: books)
-        })
+    func search(for text:  String) {
+        bookDatabase.terminateSearch()
+        switch searchType {
+        case searchTypes[0]:
+            bookSearchResults = []
+        case searchTypes[1]:
+            bookSearchResults = []
+            bookDatabase.searchAllBooksFor(text: text, completion: {(books) -> Void in
+                bookSearchResults.append(contentsOf: books)
+            })
+        case searchTypes[2]: break
+        default:
+            break
+        }
     }
     
     var body: some View {
@@ -31,6 +40,9 @@ struct SearchView: View {
                             .tag(type)
                     }
                 }
+                .onChange(of: searchType) { newValue in
+                    search(for: searchText)
+                }
                 .padding(.horizontal)
                 .pickerStyle(SegmentedPickerStyle())
                 List(bookSearchResults) { book in
@@ -38,7 +50,7 @@ struct SearchView: View {
                 }
                 .searchable(text: $searchText)
                 .onSubmit(of: .search) {
-                    searchAllBooks(for: searchText)
+                    search(for: searchText)
                 }
             }
         }

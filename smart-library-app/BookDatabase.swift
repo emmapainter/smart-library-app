@@ -12,8 +12,13 @@ class BookDatabase: NSObject {
     let MAX_ITEMS_PER_REQUEST = 40
     let MAX_REQUESTS = 10
     var currentRequestIndex: Int = 0
+    var terminate = false
     
-    func searchAllBooksFor(text: String, completion:@escaping ([BookData]) -> ()) {
+    func terminateSearch() {
+        terminate = true
+    }
+    
+    private func searchGoogleBooksFor(text: String, completion:@escaping([BookData]) -> ()) {
         var searchURLComponents = URLComponents()
         searchURLComponents.scheme = "https"
         searchURLComponents.host = "www.googleapis.com"
@@ -40,11 +45,11 @@ class BookDatabase: NSObject {
                 let volumeData = try decoder.decode(VolumeData.self, from: data!)
                 
                 if let books = volumeData.books {
-                    DispatchQueue.main.async {   
+                    DispatchQueue.main.async {
                         completion(books)
                     }
                     
-                    if books.count == self.MAX_ITEMS_PER_REQUEST, self.currentRequestIndex + 1 < self.MAX_REQUESTS {
+                    if books.count == self.MAX_ITEMS_PER_REQUEST && self.currentRequestIndex + 1 < self.MAX_REQUESTS && !self.terminate {
                         self.currentRequestIndex += 1
                         self.searchAllBooksFor(text: text, completion: completion)
                     } else {
@@ -55,5 +60,10 @@ class BookDatabase: NSObject {
                 print(err)
             }
         }.resume()
+    }
+    
+    func searchAllBooksFor(text: String, completion:@escaping ([BookData]) -> ()) {
+        terminate = false
+        searchGoogleBooksFor(text: text, completion: completion)
     }
 }
