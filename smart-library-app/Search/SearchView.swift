@@ -17,14 +17,15 @@ struct SearchView: View {
     
     func search(for text:  String) {
         bookDatabase.terminateSearch()
+        bookSearchResults = []
         switch searchType {
         case searchTypes[0]:
-            bookSearchResults = []
+            break
         case searchTypes[1]:
-            bookSearchResults = []
             bookDatabase.searchAllBooksFor(text: text, completion: {(books) -> Void in
                 bookSearchResults.append(contentsOf: books)
             })
+            break
         case searchTypes[2]: break
         default:
             break
@@ -49,8 +50,10 @@ struct SearchView: View {
                     BookListItem(book: book)
                 }
                 .searchable(text: $searchText)
-                .onSubmit(of: .search) {
-                    search(for: searchText)
+                .onChange(of: searchText) { text in
+                    if text.count >= 3 {
+                        search(for: text)
+                    }
                 }
             }
         }

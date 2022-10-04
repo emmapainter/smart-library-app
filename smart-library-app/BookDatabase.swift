@@ -44,7 +44,7 @@ class BookDatabase: NSObject {
                 let decoder = JSONDecoder()
                 let volumeData = try decoder.decode(VolumeData.self, from: data!)
                 
-                if let books = volumeData.books {
+                if let books = volumeData.books, !self.terminate {
                     DispatchQueue.main.async {
                         completion(books)
                     }
