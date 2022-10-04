@@ -11,7 +11,16 @@ struct BookListItem: View {
     var book: BookData
     var body: some View {
         HStack {
-            AsyncImage(url: URL(string: book.imageURL ?? "-"))
+            AsyncImage(
+                url: URL(string: book.imageURL?.replacingOccurrences(of: "http", with: "https") ?? ""),
+                content: { image in
+                    image.resizable()
+                        .aspectRatio(contentMode: .fill)
+                        .frame(width: 60, height: 90)
+            },
+            placeholder: {
+                ProgressView()
+            })
                 .frame(width: 60, height: 90)
                 .cornerRadius(10)
             VStack(alignment: .leading) {
