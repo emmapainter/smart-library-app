@@ -7,7 +7,7 @@
 
 import UIKit
 
-class VolumeData: NSObject, Decodable {
+struct VolumeData: Decodable {
     var books: [BookData]?
     
     private enum CodingKeys: String, CodingKey {
