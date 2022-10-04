@@ -41,7 +41,6 @@ struct BookListItem: View {
             
             
         }
-        .padding(.horizontal)
     }
 }
 
