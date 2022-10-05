@@ -12,6 +12,7 @@ struct HomeView: View {
     
     @State private var isShowingScanner = false
     @State private var scannedBook: BookData?
+    @State private var isLoading = false
     
     let bookDatabase = BookDatabase()
     
@@ -21,8 +22,13 @@ struct HomeView: View {
                 Button("Scan your book") {
                     isShowingScanner = true
                 }
-                Text(scannedBook?.title ?? "")
+                if (isLoading) {
+                    ProgressView()
                     .padding(10)
+                } else {
+                    Text(scannedBook?.title ?? "")
+                    .padding(10)
+                }
                 
             }
             .navigationTitle("Home")
@@ -39,9 +45,11 @@ struct HomeView: View {
         switch result {
         case .success(let result):
             scannedBook = nil
+            isLoading = true
             let scannedISBN = result.string
             bookDatabase.getBookByIsbn(isbn: scannedISBN, completion: {(book) -> Void in
                 scannedBook = book
+                isLoading = false
             })
         case .failure(let error):
             // TODO: RK - Error handling
