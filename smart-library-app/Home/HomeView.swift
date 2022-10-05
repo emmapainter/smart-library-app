@@ -38,6 +38,7 @@ struct HomeView: View {
         
         switch result {
         case .success(let result):
+            scannedBook = nil
             let scannedISBN = result.string
             bookDatabase.getBookByIsbn(isbn: scannedISBN, completion: {(book) -> Void in
                 scannedBook = book
