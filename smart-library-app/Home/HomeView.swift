@@ -41,12 +41,13 @@ struct HomeView: View {
     
     func handleScan(result: Result<ScanResult, ScanError>) {
         isShowingScanner = false
+        scannedBook = nil
         
         switch result {
         case .success(let result):
-            scannedBook = nil
             isLoading = true
             let scannedISBN = result.string
+            
             bookDatabase.getBookByIsbn(isbn: scannedISBN, completion: {(book) -> Void in
                 scannedBook = book
                 isLoading = false
