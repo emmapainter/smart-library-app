@@ -21,7 +21,7 @@ struct smart_library_appApp: App {
     var body: some Scene {
         WindowGroup {
             TabView {
-                ContentView()
+                HomeView()
                     .tabItem {
                         Label("Home", systemImage: "house")
                     }
