@@ -11,7 +11,9 @@ import CodeScanner
 struct HomeView: View {
     
     @State private var isShowingScanner = false
-    @State private var scannedISBN = ""
+    @State private var scannedBook: BookData?
+    
+    let bookDatabase = BookDatabase()
     
     var body: some View {
         NavigationStack {
@@ -19,14 +21,14 @@ struct HomeView: View {
                 Button("Scan your book") {
                     isShowingScanner = true
                 }
-                Text(scannedISBN)
+                Text(scannedBook?.title ?? "")
                     .padding(10)
                 
             }
             .navigationTitle("Home")
         }
         .sheet(isPresented: $isShowingScanner) {
-            CodeScannerView(codeTypes: [.ean13], simulatedData: "9780804139298", completion: handleScan)
+            CodeScannerView(codeTypes: [.ean13], simulatedData: "‎9780439708180", completion: handleScan)
         }
         
     }
@@ -36,7 +38,10 @@ struct HomeView: View {
         
         switch result {
         case .success(let result):
-            scannedISBN = result.string
+            let scannedISBN = result.string
+            bookDatabase.getBookByIsbn(isbn: scannedISBN, completion: {(book) -> Void in
+                scannedBook = book
+            })
         case .failure(let error):
             // TODO: RK - Error handling
             print("Something went wrong... \(error.localizedDescription)")
