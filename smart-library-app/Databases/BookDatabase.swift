@@ -8,7 +8,6 @@
 import UIKit
 
 class BookDatabase: NSObject {
-    let REQUEST_STRING = "https://www.googleapis.com/books/v1/volumes?q="
     let MAX_ITEMS_PER_REQUEST = 40
     let MAX_REQUESTS = 10
     var currentRequestIndex: Int = 0

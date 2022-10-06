@@ -19,6 +19,22 @@ struct HomeView: View {
     var body: some View {
         NavigationStack {
             VStack {
+                HStack {
+                    Text("Now Reading")
+                        .font(.title3)
+                        .fontWeight(.semibold)
+                    Spacer()
+                }
+                Button {
+                    print("")
+                } label: {
+                    HStack {
+                        Text("Start a new book")
+                        Image(systemName: "plus")
+                    }
+                    .frame(maxWidth: .infinity)
+                }
+                .buttonStyle(SecondaryButtonStyle())
                 Button("Scan your book") {
                     isShowingScanner = true
                 }
@@ -31,6 +47,7 @@ struct HomeView: View {
                 }
                 
             }
+            .padding(10)
             .navigationTitle("Home")
         }
         .sheet(isPresented: $isShowingScanner) {
@@ -56,7 +73,6 @@ struct HomeView: View {
             // TODO: RK - Error handling
             print("Something went wrong... \(error.localizedDescription)")
         }
-        
     }
 }
 
