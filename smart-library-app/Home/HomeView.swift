@@ -19,59 +19,11 @@ struct HomeView: View {
     var body: some View {
         NavigationStack {
             VStack {
-                HStack {
-                    Text("Now Reading")
-                        .font(.title3)
-                        .fontWeight(.semibold)
-                    Spacer()
-                }
-                Button {
-                    print("")
-                } label: {
-                    HStack {
-                        Text("Start a new book")
-                        Image(systemName: "plus")
-                    }
-                    .frame(maxWidth: .infinity)
-                }
-                .buttonStyle(SecondaryButtonStyle())
-                Button("Scan your book") {
-                    isShowingScanner = true
-                }
-                if (isLoading) {
-                    ProgressView()
-                    .padding(10)
-                } else {
-                    Text(scannedBook?.title ?? "")
-                    .padding(10)
-                }
-                
+                NowReading()
+                Spacer()
             }
-            .padding(10)
+            .padding(16)
             .navigationTitle("Home")
-        }
-        .sheet(isPresented: $isShowingScanner) {
-            CodeScannerView(codeTypes: [.ean13], simulatedData: "‎9780439708180", completion: handleScan)
-        }
-        
-    }
-    
-    func handleScan(result: Result<ScanResult, ScanError>) {
-        isShowingScanner = false
-        scannedBook = nil
-        
-        switch result {
-        case .success(let result):
-            isLoading = true
-            let scannedISBN = result.string
-            
-            bookDatabase.getBookByIsbn(isbn: scannedISBN, completion: {(book) -> Void in
-                scannedBook = book
-                isLoading = false
-            })
-        case .failure(let error):
-            // TODO: RK - Error handling
-            print("Something went wrong... \(error.localizedDescription)")
         }
     }
 }
