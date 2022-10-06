@@ -78,6 +78,7 @@
 		F814595928DDA63D00390B65 /* smart-library-app */ = {
 			isa = PBXGroup;
 			children = (
+				F8B1EF9228EE7A3B000F9071 /* Types */,
 				F8EF368B28EC213D009DADC4 /* Databases */,
 				F8EF368628EC0175009DADC4 /* Styles */,
                 2741A3F428ED803A00D4E14B /* Home */,
@@ -87,7 +88,6 @@
 				F814595E28DDA64200390B65 /* Assets.xcassets */,
 				F814596028DDA64200390B65 /* smart_library_app.entitlements */,
 				F814596128DDA64200390B65 /* Preview Content */,
-				F8722D9328E942A30037C751 /* Decodables */,
 			);
 			path = "smart-library-app";
 			sourceTree = "<group>";
@@ -116,6 +116,14 @@
 				F895D6BF28E95DB60042A38C /* BookListItem.swift */,
 			);
 			path = Search;
+			sourceTree = "<group>";
+		};
+		F8B1EF9228EE7A3B000F9071 /* Types */ = {
+			isa = PBXGroup;
+			children = (
+				F8722D9328E942A30037C751 /* Decodables */,
+			);
+			path = Types;
 			sourceTree = "<group>";
 		};
 		F8EF368628EC0175009DADC4 /* Styles */ = {
