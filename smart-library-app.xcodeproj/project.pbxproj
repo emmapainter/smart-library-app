@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2741A3F628ED804F00D4E14B /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2741A3F528ED804F00D4E14B /* HomeView.swift */; };
+		2741A3FC28ED8E3200D4E14B /* CodeScanner in Frameworks */ = {isa = PBXBuildFile; productRef = 2741A3FB28ED8E3200D4E14B /* CodeScanner */; };
 		F814595B28DDA63D00390B65 /* smart_library_appApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = F814595A28DDA63D00390B65 /* smart_library_appApp.swift */; };
 		F814595D28DDA63D00390B65 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F814595C28DDA63D00390B65 /* ContentView.swift */; };
 		F814595F28DDA64200390B65 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F814595E28DDA64200390B65 /* Assets.xcassets */; };
@@ -19,6 +21,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2741A3F528ED804F00D4E14B /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		F814595728DDA63C00390B65 /* smart-library-app.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "smart-library-app.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F814595A28DDA63D00390B65 /* smart_library_appApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = smart_library_appApp.swift; sourceTree = "<group>"; };
 		F814595C28DDA63D00390B65 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -37,12 +40,21 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2741A3FC28ED8E3200D4E14B /* CodeScanner in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2741A3F428ED803A00D4E14B /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				2741A3F528ED804F00D4E14B /* HomeView.swift */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
 		F814594E28DDA63C00390B65 = {
 			isa = PBXGroup;
 			children = (
@@ -62,6 +74,7 @@
 		F814595928DDA63D00390B65 /* smart-library-app */ = {
 			isa = PBXGroup;
 			children = (
+				2741A3F428ED803A00D4E14B /* Home */,
 				F895D6BE28E95D950042A38C /* Search */,
 				F814595A28DDA63D00390B65 /* smart_library_appApp.swift */,
 				F814595C28DDA63D00390B65 /* ContentView.swift */,
@@ -116,6 +129,9 @@
 			dependencies = (
 			);
 			name = "smart-library-app";
+			packageProductDependencies = (
+				2741A3FB28ED8E3200D4E14B /* CodeScanner */,
+			);
 			productName = "smart-library-app";
 			productReference = F814595728DDA63C00390B65 /* smart-library-app.app */;
 			productType = "com.apple.product-type.application";
@@ -144,6 +160,9 @@
 				Base,
 			);
 			mainGroup = F814594E28DDA63C00390B65;
+			packageReferences = (
+				2741A3FA28ED8E3200D4E14B /* XCRemoteSwiftPackageReference "CodeScanner" */,
+			);
 			productRefGroup = F814595828DDA63C00390B65 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -175,6 +194,7 @@
 				F814595D28DDA63D00390B65 /* ContentView.swift in Sources */,
 				F8722D9628E942A30037C751 /* VolumeData.swift in Sources */,
 				F8722D9928E945F10037C751 /* BookDatabase.swift in Sources */,
+				2741A3F628ED804F00D4E14B /* HomeView.swift in Sources */,
 				F8357C7328E6F234005E4C5E /* SearchView.swift in Sources */,
 				F814595B28DDA63D00390B65 /* smart_library_appApp.swift in Sources */,
 			);
@@ -305,6 +325,7 @@
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSCameraUsageDescription = "Access to your camera is required to scan the book barcode";
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
@@ -343,6 +364,7 @@
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSCameraUsageDescription = "Access to your camera is required to scan the book barcode";
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
@@ -390,6 +412,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		2741A3FA28ED8E3200D4E14B /* XCRemoteSwiftPackageReference "CodeScanner" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/twostraws/CodeScanner";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		2741A3FB28ED8E3200D4E14B /* CodeScanner */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2741A3FA28ED8E3200D4E14B /* XCRemoteSwiftPackageReference "CodeScanner" */;
+			productName = CodeScanner;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = F814594F28DDA63C00390B65 /* Project object */;
 }

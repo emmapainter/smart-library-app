@@ -65,4 +65,11 @@ class BookDatabase: NSObject {
         currentRequestIndex = 0
         searchGoogleBooksFor(text: text, completion: completion)
     }
+    
+    func getBookByIsbn(isbn: String, completion:@escaping (BookData?) -> ()) {
+        searchAllBooksFor(text: isbn, completion: {(books) -> Void in
+            completion(books.first)
+            self.terminateSearch()
+        })
+    }
 }
