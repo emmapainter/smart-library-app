@@ -40,6 +40,8 @@ struct StartReadingChooseBookView: View {
             }) {
                 Text("Cancel").bold()
             })
+            .navigationDestination(for: String.self, destination: { isbn in  StartReadingSelectedBookView(isbn: isbn)
+            })
         }
     }
     
@@ -47,6 +49,7 @@ struct StartReadingChooseBookView: View {
         switch result {
         case .success(let result):
             let scannedISBN = result.string
+            navigationPath.append(scannedISBN)
             
         case .failure(let error):
             // TODO: RK - Error handling
