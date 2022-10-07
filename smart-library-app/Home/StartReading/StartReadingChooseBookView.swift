@@ -17,19 +17,14 @@ struct StartReadingChooseBookView: View {
     var body: some View {
         NavigationStack(path: $navigationPath) {
             VStack {
-                NavigationLink(destination: CodeScannerView(codeTypes: [.ean13], simulatedData: "‎9780439708180", completion: handleScan)) {
+                NavigationLink(destination: CodeScannerView(codeTypes: [.ean13], simulatedData: "‎9780141037257", completion: handleScan)) {
                     Text("Scan")
-                        .frame(maxWidth: .infinity)
-                    
                 }
                 .buttonStyle(PrimaryButtonStyle())
                 Text("or")
                     .padding()
-                Button {
+                Button("Search") {
                     print("Search")
-                } label: {
-                    Text("Search")
-                        .frame(maxWidth: .infinity)
                 }
                 .buttonStyle(SecondaryButtonStyle())
             }

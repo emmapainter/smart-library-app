@@ -11,6 +11,7 @@ struct PrimaryButtonStyle: ButtonStyle {
     func makeBody(configuration: Configuration) -> some View {
         configuration
             .label
+            .frame(maxWidth: .infinity)
             .foregroundColor(Color.white)
             .padding()
             .background(Color.accentColor)

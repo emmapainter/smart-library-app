@@ -30,7 +30,6 @@ struct NowReading: View {
                     Text("Start a new book")
                     Image(systemName: "plus")
                 }
-                .frame(maxWidth: .infinity)
             }
             .buttonStyle(SecondaryButtonStyle())
         }
