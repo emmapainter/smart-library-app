@@ -10,9 +10,7 @@ import CodeScanner
 
 struct NowReading: View {
     @State var currentBooks = [ReadingBook]()
-    @State private var isShowingScanner = false
-    @State private var scannedBook: BookData?
-    @State private var isLoading = false
+    @State private var isShowingStartReading = false
     
     let bookDatabase = BookDatabase()
 
@@ -26,7 +24,7 @@ struct NowReading: View {
             }
             .padding(.top, 36.0)
             Button {
-                isShowingScanner = true
+                isShowingStartReading = true
             } label: {
                 HStack {
                     Text("Start a new book")
@@ -35,35 +33,13 @@ struct NowReading: View {
                 .frame(maxWidth: .infinity)
             }
             .buttonStyle(SecondaryButtonStyle())
-            if (isLoading) {
-                ProgressView()
-            } else {
-                Text(scannedBook?.title ?? "")
-            }
         }
-        .sheet(isPresented: $isShowingScanner) {
-            CodeScannerView(codeTypes: [.ean13], simulatedData: "‎9780439708180", completion: handleScan)
+        .sheet(isPresented: $isShowingStartReading) {
+            StartReadingChooseBookView()
         }
     }
     
-    func handleScan(result: Result<ScanResult, ScanError>) {
-        isShowingScanner = false
-        scannedBook = nil
-        
-        switch result {
-        case .success(let result):
-            isLoading = true
-            let scannedISBN = result.string
-            
-            bookDatabase.getBookByIsbn(isbn: scannedISBN, completion: {(book) -> Void in
-                scannedBook = book
-                isLoading = false
-            })
-        case .failure(let error):
-            // TODO: RK - Error handling
-            print("Something went wrong... \(error.localizedDescription)")
-        }
-    }
+    
 }
 
 struct NowReadingView_Previews: PreviewProvider {
