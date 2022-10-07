@@ -43,11 +43,3 @@ struct BookListItem: View {
         }
     }
 }
-
-//struct BookListItem_Previews: PreviewProvider {
-//    static var previews: some View {
-//        BookListItem()
-//
-//
-//    }
-//}
