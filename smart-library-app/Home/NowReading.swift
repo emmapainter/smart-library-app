@@ -35,7 +35,11 @@ struct NowReading: View {
                 .frame(maxWidth: .infinity)
             }
             .buttonStyle(SecondaryButtonStyle())
-            Text(scannedBook?.title ?? "-")
+            if (isLoading) {
+                ProgressView()
+            } else {
+                Text(scannedBook?.title ?? "")
+            }
         }
         .sheet(isPresented: $isShowingScanner) {
             CodeScannerView(codeTypes: [.ean13], simulatedData: "‎9780439708180", completion: handleScan)
