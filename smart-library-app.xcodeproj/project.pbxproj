@@ -17,6 +17,7 @@
 		F8722D9628E942A30037C751 /* VolumeData.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8722D9428E942A30037C751 /* VolumeData.swift */; };
 		F8722D9728E942A30037C751 /* BookData.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8722D9528E942A30037C751 /* BookData.swift */; };
 		F8722D9928E945F10037C751 /* BookDatabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8722D9828E945F10037C751 /* BookDatabase.swift */; };
+		F894A07628EFD21C00C19693 /* PrimaryButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = F894A07528EFD21C00C19693 /* PrimaryButtonStyle.swift */; };
 		F895D6C028E95DB60042A38C /* BookListItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = F895D6BF28E95DB60042A38C /* BookListItem.swift */; };
 		F8B1EF9128EE79B1000F9071 /* NowReading.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8B1EF9028EE79B1000F9071 /* NowReading.swift */; };
 		F8B1EF9428EE7A63000F9071 /* ReadingBook.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8B1EF9328EE7A63000F9071 /* ReadingBook.swift */; };
@@ -36,6 +37,7 @@
 		F8722D9428E942A30037C751 /* VolumeData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VolumeData.swift; sourceTree = "<group>"; };
 		F8722D9528E942A30037C751 /* BookData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookData.swift; sourceTree = "<group>"; };
 		F8722D9828E945F10037C751 /* BookDatabase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookDatabase.swift; sourceTree = "<group>"; };
+		F894A07528EFD21C00C19693 /* PrimaryButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrimaryButtonStyle.swift; sourceTree = "<group>"; };
 		F895D6BF28E95DB60042A38C /* BookListItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookListItem.swift; sourceTree = "<group>"; };
 		F8B1EF9028EE79B1000F9071 /* NowReading.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NowReading.swift; sourceTree = "<group>"; };
 		F8B1EF9328EE7A63000F9071 /* ReadingBook.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadingBook.swift; sourceTree = "<group>"; };
@@ -136,6 +138,7 @@
 			isa = PBXGroup;
 			children = (
 				F8EF368728EC0182009DADC4 /* SecondaryButtonStyle.swift */,
+				F894A07528EFD21C00C19693 /* PrimaryButtonStyle.swift */,
 			);
 			path = Styles;
 			sourceTree = "<group>";
@@ -225,6 +228,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F894A07628EFD21C00C19693 /* PrimaryButtonStyle.swift in Sources */,
 				F8EF368828EC0182009DADC4 /* SecondaryButtonStyle.swift in Sources */,
 				F8B1EF9428EE7A63000F9071 /* ReadingBook.swift in Sources */,
 				F895D6C028E95DB60042A38C /* BookListItem.swift in Sources */,
