@@ -13,8 +13,37 @@ struct StartReadingSelectedBookView: View {
     @StateObject var viewModel: StartReadingSelectedBookViewModel = StartReadingSelectedBookViewModel()
     
     var body: some View {
+        
         if let book = viewModel.book {
-            Text(book.title ?? "-")
+            VStack {
+                Spacer()
+                AsyncImage(
+                    url: URL(string: book.imageURL?.replacingOccurrences(of: "http", with: "https") ?? ""),
+                    content: { image in
+                        image.resizable()
+                            .aspectRatio(contentMode: .fit)
+                            .frame(height: 300)
+                    },
+                    placeholder: {
+                        ProgressView()
+                    })
+                .padding(.bottom)
+                        .frame(height: 300)
+                Text(book.title ?? "-")
+                    .font(.title)
+                    .multilineTextAlignment(.center)
+                    .padding(.top)
+                Text(book.authors ?? "-")
+                    .font(.title2)
+                    .multilineTextAlignment(.center)
+                    .padding(.top, 3.0)
+                Spacer()
+                Button("Start Reading") {
+                    
+                }
+                .buttonStyle(PrimaryButtonStyle())
+            }
+            .padding(16)
         } else {
             ProgressView()
                 .onAppear() {
@@ -26,6 +55,6 @@ struct StartReadingSelectedBookView: View {
 
 struct StartReadingSelectedBookView_Previews: PreviewProvider {
     static var previews: some View {
-        StartReadingSelectedBookView(isbn: "‎9780439708180")
+        StartReadingSelectedBookView(isbn: "‎9780141037257")
     }
 }
