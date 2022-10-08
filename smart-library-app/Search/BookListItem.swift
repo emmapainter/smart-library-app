@@ -8,11 +8,15 @@
 import SwiftUI
 
 struct BookListItem: View {
-    var book: BookData
+    var book: Book
+
     var body: some View {
+        
+        let bookCoverImage = book.coverId != nil ? "https://covers.openlibrary.org/b/id/\(book.coverId!)-M.jpg" : ""
+        
         HStack {
             AsyncImage(
-                url: URL(string: book.imageURL?.replacingOccurrences(of: "http", with: "https") ?? ""),
+                url: URL(string: bookCoverImage),
                 content: { image in
                     image.resizable()
                         .aspectRatio(contentMode: .fill)
@@ -24,12 +28,12 @@ struct BookListItem: View {
                 .frame(width: 60, height: 90)
                 .cornerRadius(10)
             VStack(alignment: .leading) {
-                Text(book.title ?? "-")
+                Text(book.title)
                     .font(.title3)
                     .fontWeight(.semibold)
                     .lineLimit(2)
                     .padding(/*@START_MENU_TOKEN@*/.all, 4.0/*@END_MENU_TOKEN@*/)
-                Text(book.authors ?? "-")
+                Text(book.authors?.first ?? "-")
                     .font(.body)
                     .foregroundColor(Color.gray)
                     .fontWeight(.medium)
