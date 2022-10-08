@@ -12,7 +12,6 @@ struct StartReadingChooseBookView: View {
     @Environment(\.dismiss) var dismiss
     @State private var isShowingStartReading = false
     @State private var navigationPath = NavigationPath()
-    let bookDatabase = BookDatabase()
     
     var body: some View {
         NavigationStack(path: $navigationPath) {

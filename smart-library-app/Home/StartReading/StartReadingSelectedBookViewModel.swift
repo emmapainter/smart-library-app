@@ -7,13 +7,17 @@
 
 import Foundation
 
-class StartReadingSelectedBookViewModel: ObservableObject {
-    @Published var book: BookData?
-    let bookDatabase = BookDatabase()
+@MainActor class StartReadingSelectedBookViewModel: ObservableObject {
+    @Published var book: BookEdition?
+    let bookApi = BookApi()
     
     func getBook(isbn: String) {
-        bookDatabase.getBookByIsbn(isbn: isbn) { book in
-            self.book = book
+        Task {
+            do {
+                self.book = try await bookApi.getBook(isbn13: isbn)
+            } catch let error {
+                print(error) // TODO: RK - Error handling
+            }
         }
     }
 }

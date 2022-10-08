@@ -15,9 +15,10 @@ class BookApi: BookApiProtocol {
 //        // do nothing
 //    }
 //    
-//    func getBook(isbn13: String) async throws -> Book {
-//        // do nothing
-//    }
+    func getBook(isbn13: String) async throws -> BookEdition {
+        let result = try await getApiResponse(endpoint: "/isbn/\(isbn13).json", queryItems: nil, type: BookEditionData.self)
+        return BookEdition.init(result)
+    }
     
     func searchBooks(searchQuery: String) async throws -> [Book] {
         let queryItems = [URLQueryItem(name: "q", value: searchQuery)]
@@ -28,19 +29,20 @@ class BookApi: BookApiProtocol {
     }
     
     private func getUrlRequest(endpoint: String, queryItems: [URLQueryItem]?) -> URLRequest {
-        // Build url components
+        
+        // RK: The mock data passed in from the scanning library adds this character to the start, so I'm removing it here
+        let endpoint = endpoint.replacingOccurrences(of: "\u{200E}", with: "")
         var urlComponents = URLComponents()
         urlComponents.scheme = "https"
         urlComponents.host = API_BASE
         urlComponents.path =  endpoint
-        urlComponents.queryItems = queryItems
+
         
-        guard let requestUrl = urlComponents.url  else {
+        guard let requestUrl = urlComponents.url else {
             fatalError("invalid url") // should throw!!!
         }
         
         return URLRequest(url: requestUrl)
-        
     }
     
     private func getApiResponse<T>(endpoint: String, queryItems: [URLQueryItem]?, type: T.Type) async throws -> T where T: Decodable {
@@ -50,18 +52,14 @@ class BookApi: BookApiProtocol {
         
         return try decoder.decode(type, from: data)
     }
-    
-    
-
-
 }
 
 // MARK: - Codable helpers
 private extension BookEdition {
     init(_ data: BookEditionData) {
         self.init(
-            id: data.id,
-            title: data.title,
+            id: data.key,
+            title: data.title ?? "test",
             description: data.description,
             coverId: data.covers?.first,
             author: data.by_statement,
@@ -91,14 +89,13 @@ private struct AuthorKeys: Codable {
 }
 
 private struct BookEditionData: Codable {
-    let id: String
     let key: String
-    let title: String
+    let title: String?
     let description: String?
     let covers: [Int]?
     let by_statement: String?
     let authors: [AuthorKeys]?
-    let publish_date: Date?
+    let publish_date: String?
     let isbn_13: [String]?
     let number_of_pages: Int?
 }
