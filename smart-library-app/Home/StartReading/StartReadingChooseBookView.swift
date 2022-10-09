@@ -16,7 +16,7 @@ struct StartReadingChooseBookView: View {
     var body: some View {
         NavigationStack(path: $navigationPath) {
             VStack {
-                NavigationLink(destination: CodeScannerView(codeTypes: [.ean13], simulatedData: "‎9780141037257", completion: handleScan)) {
+                NavigationLink(destination: CodeScannerView(codeTypes: [.ean13], simulatedData: "‎9780747532743", completion: handleScan)) {
                     Text("Scan")
                 }
                 .buttonStyle(PrimaryButtonStyle())
