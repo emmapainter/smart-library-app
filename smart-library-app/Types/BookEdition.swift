@@ -17,4 +17,12 @@ struct BookEdition: Hashable, Identifiable {
     let publishedDate: String?
     let isbn13: String?
     let pages: Int?
+    
+    func getImageUrl(size: ImageSize) -> URL? {
+        guard let imageId = self.coverId else {
+            return nil
+        }
+        
+        return Utils().getImageUrl(imageId: imageId, size: size)
+    }
 }

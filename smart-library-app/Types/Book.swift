@@ -26,4 +26,12 @@ struct Book: Codable, Hashable, Identifiable {
         case publishedDate = "first_publish_year"
         case mainEdition = "cover_edition_key"
     }
+    
+    func getImageUrl(size: ImageSize) -> URL? {
+        guard let imageId = self.coverId else {
+            return nil
+        }
+        
+        return Utils().getImageUrl(imageId: imageId, size: size)
+    }
 }

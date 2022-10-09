@@ -8,15 +8,13 @@
 import SwiftUI
 
 struct BookListItem: View {
+    let bookApi = BookApi()
     var book: Book
 
     var body: some View {
-        
-        let bookCoverImage = book.coverId != nil ? "https://covers.openlibrary.org/b/id/\(book.coverId!)-M.jpg" : ""
-        
         HStack {
             AsyncImage(
-                url: URL(string: bookCoverImage),
+                url: book.getImageUrl(size: .medium),
                 content: { image in
                     image.resizable()
                         .aspectRatio(contentMode: .fill)
