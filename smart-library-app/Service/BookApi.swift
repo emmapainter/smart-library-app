@@ -8,7 +8,6 @@
 import Foundation
 
 private let API_BASE = "openlibrary.org"
-private let IMAGE_BASE = "covers.openlibrary.org/b/id"
 
 class BookApi: BookApiProtocol {
 //    func getBookEdition(id: String) async throws -> Book {
@@ -47,6 +46,7 @@ class BookApi: BookApiProtocol {
         urlComponents.scheme = "https"
         urlComponents.host = API_BASE
         urlComponents.path =  endpoint
+        urlComponents.queryItems = queryItems
 
         
         guard let requestUrl = urlComponents.url else {
@@ -72,7 +72,7 @@ private extension BookEdition {
     init(_ data: BookEditionData) {
         self.init(
             id: data.key,
-            title: data.title ?? "test",
+            title: data.title ?? "",
             description: data.description,
             coverId: data.covers?.first,
             authorIds: data.authors?.map {$0.key},
