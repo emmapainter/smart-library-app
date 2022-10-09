@@ -13,12 +13,9 @@ struct SearchView: View {
     @State var bookSearchResults = [Book]()
     
     let searchTypes = ["My Books", "All Books", "Users"]
-//    let bookDatabase = BookDatabase()
     let bookApi = BookApi()
     
     func search(for text:  String) {
-//        bookDatabase.terminateSearch()
-//        bookSearchResults = []
         switch searchType {
         case searchTypes[0]:
             break

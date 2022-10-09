@@ -11,8 +11,6 @@ import CodeScanner
 struct NowReading: View {
     @State var currentBooks = [ReadingBook]()
     @State private var isShowingStartReading = false
-    
-    let bookDatabase = BookDatabase()
 
     var body: some View {
         VStack {
