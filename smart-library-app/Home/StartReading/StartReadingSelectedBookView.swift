@@ -32,7 +32,7 @@ struct StartReadingSelectedBookView: View {
                     .font(.title)
                     .multilineTextAlignment(.center)
                     .padding(.top)
-                Text(book.author ?? "-")
+                Text(viewModel.authors?.map {$0.name}.joined(separator: ", ") ?? "-")
                     .font(.title2)
                     .multilineTextAlignment(.center)
                     .padding(.top, 3.0)

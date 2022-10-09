@@ -15,9 +15,20 @@ class BookApi: BookApiProtocol {
 //        // do nothing
 //    }
 //    
-    func getBook(isbn13: String) async throws -> BookEdition {
+    func getBookEdition(isbn13: String) async throws -> BookEdition {
         let result = try await getApiResponse(endpoint: "/isbn/\(isbn13).json", queryItems: nil, type: BookEditionData.self)
         return BookEdition.init(result)
+    }
+    
+    func getBookAuthors(authorIds: [String]) async throws -> [Author] {
+        var authors = [Author]()
+
+        for id in authorIds {
+            let author = try await getApiResponse(endpoint: "\(id).json", queryItems: nil, type: Author.self)
+            authors.append(author)
+        }
+        
+        return authors
     }
     
     func searchBooks(searchQuery: String) async throws -> [Book] {
@@ -42,6 +53,8 @@ class BookApi: BookApiProtocol {
             fatalError("invalid url") // should throw!!!
         }
         
+        print(requestUrl)
+        
         return URLRequest(url: requestUrl)
     }
     
@@ -62,7 +75,6 @@ private extension BookEdition {
             title: data.title ?? "test",
             description: data.description,
             coverId: data.covers?.first,
-            author: data.by_statement,
             authorIds: data.authors?.map {$0.key},
             publishedDate: data.publish_date,
             isbn13: data.isbn_13?.first,

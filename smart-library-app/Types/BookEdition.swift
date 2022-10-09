@@ -13,7 +13,6 @@ struct BookEdition: Hashable, Identifiable {
     let title: String
     let description: String?
     let coverId: Int?
-    let author: String?
     let authorIds: [String]?
     let publishedDate: String?
     let isbn13: String?
