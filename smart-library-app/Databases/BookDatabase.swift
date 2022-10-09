@@ -8,7 +8,6 @@
 import UIKit
 
 class BookDatabase: NSObject {
-    let REQUEST_STRING = "https://www.googleapis.com/books/v1/volumes?q="
     let MAX_ITEMS_PER_REQUEST = 40
     let MAX_REQUESTS = 10
     var currentRequestIndex: Int = 0
@@ -64,5 +63,12 @@ class BookDatabase: NSObject {
         terminate = false
         currentRequestIndex = 0
         searchGoogleBooksFor(text: text, completion: completion)
+    }
+    
+    func getBookByIsbn(isbn: String, completion:@escaping (BookData?) -> ()) {
+        searchAllBooksFor(text: isbn, completion: {(books) -> Void in
+            completion(books.first)
+            self.terminateSearch()
+        })
     }
 }
