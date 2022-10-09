@@ -49,7 +49,6 @@ struct StartReadingSelectedBookView: View {
             ProgressView()
                 .onAppear() {
                     if let isbn = isbn {
-                        print(isbn)
                         viewModel.getBook(isbn: isbn)
                     }
                     

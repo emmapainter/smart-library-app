@@ -54,8 +54,6 @@ class BookApi: BookApiProtocol {
             fatalError("invalid url") // should throw!!!
         }
         
-        print(requestUrl)
-        
         return URLRequest(url: requestUrl)
     }
     
