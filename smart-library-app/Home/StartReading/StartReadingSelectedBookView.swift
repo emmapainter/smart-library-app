@@ -8,7 +8,8 @@
 import SwiftUI
 
 struct StartReadingSelectedBookView: View {
-    var isbn: String
+    var id: String?
+    var isbn: String?
     @StateObject var viewModel = StartReadingSelectedBookViewModel()
     
     var body: some View {
@@ -47,7 +48,14 @@ struct StartReadingSelectedBookView: View {
         } else {
             ProgressView()
                 .onAppear() {
-                    viewModel.getBook(isbn: isbn)
+                    if let isbn = isbn {
+                        print(isbn)
+                        viewModel.getBook(isbn: isbn)
+                    }
+                    
+                    if let id = id {
+                        viewModel.getBook(id: id)
+                    }
                 }
         }
     }

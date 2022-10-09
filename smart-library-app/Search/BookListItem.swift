@@ -37,8 +37,6 @@ struct BookListItem: View {
                     .fontWeight(.medium)
                     .lineLimit(1)
                     .padding([.leading, .bottom, .trailing], 4.0)
-                    
-                    
             }
             
             

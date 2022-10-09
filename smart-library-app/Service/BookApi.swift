@@ -10,10 +10,11 @@ import Foundation
 private let API_BASE = "openlibrary.org"
 
 class BookApi: BookApiProtocol {
-//    func getBookEdition(id: String) async throws -> Book {
-//        // do nothing
-//    }
-//    
+    func getBookEdition(id: String) async throws -> BookEdition {
+        let result = try await getApiResponse(endpoint: "/book/\(id).json", queryItems: nil, type: BookEditionData.self)
+        return BookEdition.init(result)
+    }
+    
     func getBookEdition(isbn13: String) async throws -> BookEdition {
         let result = try await getApiResponse(endpoint: "/isbn/\(isbn13).json", queryItems: nil, type: BookEditionData.self)
         return BookEdition.init(result)

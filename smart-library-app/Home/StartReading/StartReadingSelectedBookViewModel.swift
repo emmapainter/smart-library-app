@@ -7,6 +7,11 @@
 
 import Foundation
 
+private enum IdType {
+    case id
+    case isbn13
+}
+
 @MainActor class StartReadingSelectedBookViewModel: ObservableObject {
     @Published var book: BookEdition?
     @Published var authors: [Author]?
@@ -16,21 +21,40 @@ import Foundation
     func getBook(isbn: String) {
         Task {
             do {
-                try await getBookData(isbn: isbn)
+                try await getBookData(id: isbn, idType: .isbn13)
             } catch let error {
                 print(error) // TODO: RK - Error handling
             }
         }
     }
     
-    private func getBookData(isbn: String) async throws -> Void {
+    func getBook(id: String) {
+        Task {
+            do {
+                try await getBookData(id: id, idType: .id)
+            } catch let error {
+                print(error) // TODO: RK - Error handling
+            }
+        }
+    }
+    
+    private func getBookData(id: String, idType: IdType) async throws -> Void {
         
-        // Fetch book data from api
-        let book = try await bookApi.getBookEdition(isbn13: isbn)
+        var book: BookEdition?
         var authors: [Author]?
         
+        // Fetch book data from api
+        switch idType {
+        case .id:
+            book = try await bookApi.getBookEdition(id: id)
+            break
+        case .isbn13:
+            book = try await bookApi.getBookEdition(isbn13: id)
+            break
+        }
+        
         // Fetch authors (if the book data has any authors)
-        if let authorIds = book.authorIds {
+        if let book = book, let authorIds = book.authorIds {
             authors = try await bookApi.getBookAuthors(authorIds: authorIds)
         }
         

@@ -50,7 +50,9 @@ struct SearchView: View {
                 .padding(.horizontal)
                 .pickerStyle(SegmentedPickerStyle())
                 List(bookSearchResults) { book in
-                    BookListItem(book: book)
+                    NavigationLink(destination: StartReadingSelectedBookView(id: book.mainEdition)) {
+                        BookListItem(book: book)
+                    }
                 }
                 .searchable(text: $searchText)
                 .onSubmit(of: .search) {
