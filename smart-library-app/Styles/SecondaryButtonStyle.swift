@@ -12,6 +12,7 @@ struct SecondaryButtonStyle: ButtonStyle {
     func makeBody(configuration: Configuration) -> some View {
         configuration
             .label
+            .frame(maxWidth: .infinity)
             .foregroundColor(Color.accentColor)
             .padding()
             .overlay(

@@ -17,6 +17,10 @@
 		F8722D9628E942A30037C751 /* VolumeData.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8722D9428E942A30037C751 /* VolumeData.swift */; };
 		F8722D9728E942A30037C751 /* BookData.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8722D9528E942A30037C751 /* BookData.swift */; };
 		F8722D9928E945F10037C751 /* BookDatabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8722D9828E945F10037C751 /* BookDatabase.swift */; };
+		F894A07428EFB4C700C19693 /* StartReadingChooseBookView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F894A07328EFB4C600C19693 /* StartReadingChooseBookView.swift */; };
+		F894A07628EFD21C00C19693 /* PrimaryButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = F894A07528EFD21C00C19693 /* PrimaryButtonStyle.swift */; };
+		F894A07928EFFD6000C19693 /* StartReadingSelectedBookView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F894A07828EFFD6000C19693 /* StartReadingSelectedBookView.swift */; };
+		F894A07F28F006FF00C19693 /* StartReadingSelectedBookViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F894A07E28F006FF00C19693 /* StartReadingSelectedBookViewModel.swift */; };
 		F895D6C028E95DB60042A38C /* BookListItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = F895D6BF28E95DB60042A38C /* BookListItem.swift */; };
 		F8B1EF9128EE79B1000F9071 /* NowReading.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8B1EF9028EE79B1000F9071 /* NowReading.swift */; };
 		F8B1EF9428EE7A63000F9071 /* ReadingBook.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8B1EF9328EE7A63000F9071 /* ReadingBook.swift */; };
@@ -36,6 +40,10 @@
 		F8722D9428E942A30037C751 /* VolumeData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VolumeData.swift; sourceTree = "<group>"; };
 		F8722D9528E942A30037C751 /* BookData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookData.swift; sourceTree = "<group>"; };
 		F8722D9828E945F10037C751 /* BookDatabase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookDatabase.swift; sourceTree = "<group>"; };
+		F894A07328EFB4C600C19693 /* StartReadingChooseBookView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartReadingChooseBookView.swift; sourceTree = "<group>"; };
+		F894A07528EFD21C00C19693 /* PrimaryButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrimaryButtonStyle.swift; sourceTree = "<group>"; };
+		F894A07828EFFD6000C19693 /* StartReadingSelectedBookView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartReadingSelectedBookView.swift; sourceTree = "<group>"; };
+		F894A07E28F006FF00C19693 /* StartReadingSelectedBookViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartReadingSelectedBookViewModel.swift; sourceTree = "<group>"; };
 		F895D6BF28E95DB60042A38C /* BookListItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookListItem.swift; sourceTree = "<group>"; };
 		F8B1EF9028EE79B1000F9071 /* NowReading.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NowReading.swift; sourceTree = "<group>"; };
 		F8B1EF9328EE7A63000F9071 /* ReadingBook.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadingBook.swift; sourceTree = "<group>"; };
@@ -58,6 +66,7 @@
 		2741A3F428ED803A00D4E14B /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				F894A07A28EFFD6500C19693 /* StartReading */,
 				2741A3F528ED804F00D4E14B /* HomeView.swift */,
 				F8B1EF9028EE79B1000F9071 /* NowReading.swift */,
 			);
@@ -114,6 +123,16 @@
 			path = Decodables;
 			sourceTree = "<group>";
 		};
+		F894A07A28EFFD6500C19693 /* StartReading */ = {
+			isa = PBXGroup;
+			children = (
+				F894A07328EFB4C600C19693 /* StartReadingChooseBookView.swift */,
+				F894A07828EFFD6000C19693 /* StartReadingSelectedBookView.swift */,
+				F894A07E28F006FF00C19693 /* StartReadingSelectedBookViewModel.swift */,
+			);
+			path = StartReading;
+			sourceTree = "<group>";
+		};
 		F895D6BE28E95D950042A38C /* Search */ = {
 			isa = PBXGroup;
 			children = (
@@ -136,6 +155,7 @@
 			isa = PBXGroup;
 			children = (
 				F8EF368728EC0182009DADC4 /* SecondaryButtonStyle.swift */,
+				F894A07528EFD21C00C19693 /* PrimaryButtonStyle.swift */,
 			);
 			path = Styles;
 			sourceTree = "<group>";
@@ -225,18 +245,22 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F894A07628EFD21C00C19693 /* PrimaryButtonStyle.swift in Sources */,
 				F8EF368828EC0182009DADC4 /* SecondaryButtonStyle.swift in Sources */,
 				F8B1EF9428EE7A63000F9071 /* ReadingBook.swift in Sources */,
 				F895D6C028E95DB60042A38C /* BookListItem.swift in Sources */,
+				F894A07F28F006FF00C19693 /* StartReadingSelectedBookViewModel.swift in Sources */,
 				F8722D9728E942A30037C751 /* BookData.swift in Sources */,
 				F814595D28DDA63D00390B65 /* ContentView.swift in Sources */,
 				F8722D9628E942A30037C751 /* VolumeData.swift in Sources */,
 				F8722D9928E945F10037C751 /* BookDatabase.swift in Sources */,
 				F8B1EF9128EE79B1000F9071 /* NowReading.swift in Sources */,
+				F894A07428EFB4C700C19693 /* StartReadingChooseBookView.swift in Sources */,
 				2741A3F628ED804F00D4E14B /* HomeView.swift in Sources */,
 				F8357C7328E6F234005E4C5E /* SearchView.swift in Sources */,
 				F814595B28DDA63D00390B65 /* smart_library_appApp.swift in Sources */,
 				F8EF368A28EC2131009DADC4 /* UserDatabase.swift in Sources */,
+				F894A07928EFFD6000C19693 /* StartReadingSelectedBookView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -365,6 +389,7 @@
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NFCReaderUsageDescription = "The application needs to access the device's NFC reader to register your bookmark.";
 				INFOPLIST_KEY_NSCameraUsageDescription = "Access to your camera is required to scan the book barcode";
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
@@ -406,6 +431,7 @@
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NFCReaderUsageDescription = "The application needs to access the device's NFC reader to register your bookmark.";
 				INFOPLIST_KEY_NSCameraUsageDescription = "Access to your camera is required to scan the book barcode";
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
