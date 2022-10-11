@@ -6,15 +6,19 @@
 //
 
 import Foundation
+import CoreNFC
+import UIKit
 
 private enum IdType {
     case id
     case isbn13
 }
 
-@MainActor class StartReadingSelectedBookViewModel: ObservableObject {
+@MainActor class StartReadingSelectedBookViewModel: NSObject, ObservableObject, NFCTagReaderSessionDelegate {
     @Published var book: BookEdition?
     @Published var authors: [Author]?
+    var detectedBookmark: Bookmark?
+    var session: NFCTagReaderSession?
     
     let bookApi = BookApi()
     
@@ -61,5 +65,40 @@ private enum IdType {
         // set view model data together to avoid them appearing on the screen separately
         self.book = book
         self.authors = authors
+    }
+    
+    nonisolated func tagReaderSessionDidBecomeActive(_ session: NFCTagReaderSession) {
+        print("Reader session active")
+    }
+
+
+    nonisolated func tagReaderSession(_ session: NFCTagReaderSession, didInvalidateWithError error: Error) {
+        print("Reader session complete")
+    }
+
+    nonisolated func tagReaderSession(_ session: NFCTagReaderSession, didDetect tags: [NFCTag]) {
+        for nfcTag in tags {
+            session.connect(to: nfcTag) { error in
+                if let error = error {
+                    print(error.localizedDescription)
+                    return
+                }
+                
+                if case let .miFare(mifareTag) = nfcTag {
+                    mifareTag.readNDEF { message, error in
+                        if let error = error {
+                            print(error.localizedDescription)
+                            return
+                        }
+                        message?.records.forEach { record in
+                            if let string = String(data: record.payload, encoding: .ascii) {
+                                print(string)
+                                session.invalidate()
+                            }
+                        }
+                    }
+                }
+            }
+        }
     }
 }

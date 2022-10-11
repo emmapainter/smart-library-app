@@ -27,6 +27,7 @@
 		F895D6C028E95DB60042A38C /* BookListItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = F895D6BF28E95DB60042A38C /* BookListItem.swift */; };
 		F8B1EF9128EE79B1000F9071 /* NowReading.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8B1EF9028EE79B1000F9071 /* NowReading.swift */; };
 		F8B1EF9428EE7A63000F9071 /* ReadingBook.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8B1EF9328EE7A63000F9071 /* ReadingBook.swift */; };
+		F8D3B23528F4F15400A08107 /* Bookmark.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8D3B23428F4F15400A08107 /* Bookmark.swift */; };
 		F8EF368828EC0182009DADC4 /* SecondaryButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8EF368728EC0182009DADC4 /* SecondaryButtonStyle.swift */; };
 		F8EF368A28EC2131009DADC4 /* UserDatabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8EF368928EC2131009DADC4 /* UserDatabase.swift */; };
 /* End PBXBuildFile section */
@@ -53,6 +54,7 @@
 		F895D6BF28E95DB60042A38C /* BookListItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookListItem.swift; sourceTree = "<group>"; };
 		F8B1EF9028EE79B1000F9071 /* NowReading.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NowReading.swift; sourceTree = "<group>"; };
 		F8B1EF9328EE7A63000F9071 /* ReadingBook.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadingBook.swift; sourceTree = "<group>"; };
+		F8D3B23428F4F15400A08107 /* Bookmark.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Bookmark.swift; sourceTree = "<group>"; };
 		F8EF368728EC0182009DADC4 /* SecondaryButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondaryButtonStyle.swift; sourceTree = "<group>"; };
 		F8EF368928EC2131009DADC4 /* UserDatabase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDatabase.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -157,6 +159,7 @@
 				2741A43D28F0F7D700D4E14B /* Book.swift */,
 				279BB11D28F10ECF008CD22C /* BookEdition.swift */,
 				279BB11F28F24CD6008CD22C /* Author.swift */,
+				F8D3B23428F4F15400A08107 /* Bookmark.swift */,
 			);
 			path = Types;
 			sourceTree = "<group>";
@@ -262,6 +265,7 @@
 				2741A43B28F0F74F00D4E14B /* BookApiProtocol.swift in Sources */,
 				F895D6C028E95DB60042A38C /* BookListItem.swift in Sources */,
 				F894A07F28F006FF00C19693 /* StartReadingSelectedBookViewModel.swift in Sources */,
+				F8D3B23528F4F15400A08107 /* Bookmark.swift in Sources */,
 				F814595D28DDA63D00390B65 /* ContentView.swift in Sources */,
 				2741A44228F0FACD00D4E14B /* BookApi.swift in Sources */,
 				279BB12028F24CD6008CD22C /* Author.swift in Sources */,

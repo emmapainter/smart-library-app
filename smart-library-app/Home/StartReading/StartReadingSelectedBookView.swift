@@ -6,11 +6,13 @@
 //
 
 import SwiftUI
+import CoreNFC
 
 struct StartReadingSelectedBookView: View {
     var id: String?
     var isbn: String?
     @StateObject var viewModel = StartReadingSelectedBookViewModel()
+    @State private var showingAlert = false
     
     var body: some View {
         
@@ -40,11 +42,16 @@ struct StartReadingSelectedBookView: View {
                     .padding(.top, 3.0)
                 Spacer()
                 Button("Start Reading") {
-                    
+                    scanBookmark(self)
                 }
                 .buttonStyle(PrimaryButtonStyle())
             }
             .padding(16)
+            .alert("Near field communication not enabled", isPresented: $showingAlert) {
+                Button("OK", role: .cancel) {}
+            } message: {
+                Text("Near field communication is required to scan your bookmark, please enable NFC permissions in your settings.")
+            }
         } else {
             ProgressView()
                 .onAppear() {
@@ -57,6 +64,16 @@ struct StartReadingSelectedBookView: View {
                     }
                 }
         }
+    }
+    
+    func scanBookmark(_ sender: Any) {
+        guard NFCTagReaderSession.readingAvailable else {
+            showingAlert = true
+            return
+        }
+        viewModel.session = NFCTagReaderSession(pollingOption: .iso14443, delegate: viewModel)
+        viewModel.session?.alertMessage = "Tap your bookmark to assign it to this book."
+        viewModel.session?.begin()
     }
 }
 
