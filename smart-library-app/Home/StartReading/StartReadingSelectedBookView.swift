@@ -8,9 +8,9 @@
 import SwiftUI
 
 struct StartReadingSelectedBookView: View {
-    var isbn: String
-    let bookDatabase = BookDatabase()
-    @StateObject var viewModel: StartReadingSelectedBookViewModel = StartReadingSelectedBookViewModel()
+    var id: String?
+    var isbn: String?
+    @StateObject var viewModel = StartReadingSelectedBookViewModel()
     
     var body: some View {
         
@@ -18,22 +18,23 @@ struct StartReadingSelectedBookView: View {
             VStack {
                 Spacer()
                 AsyncImage(
-                    url: URL(string: book.imageURL?.replacingOccurrences(of: "http", with: "https") ?? ""),
+                    url: viewModel.book?.getImageUrl(size: .large),
                     content: { image in
                         image.resizable()
                             .aspectRatio(contentMode: .fit)
                             .frame(height: 300)
+                            .cornerRadius(10)
                     },
                     placeholder: {
                         ProgressView()
                     })
                 .padding(.bottom)
                         .frame(height: 300)
-                Text(book.title ?? "-")
+                Text(book.title)
                     .font(.title)
                     .multilineTextAlignment(.center)
                     .padding(.top)
-                Text(book.authors ?? "-")
+                Text(viewModel.authors?.map {$0.name}.joined(separator: ", ") ?? "-")
                     .font(.title2)
                     .multilineTextAlignment(.center)
                     .padding(.top, 3.0)
@@ -47,7 +48,13 @@ struct StartReadingSelectedBookView: View {
         } else {
             ProgressView()
                 .onAppear() {
-                    viewModel.getBook(isbn: isbn)
+                    if let isbn = isbn {
+                        viewModel.getBook(isbn: isbn)
+                    }
+                    
+                    if let id = id {
+                        viewModel.getBook(id: id)
+                    }
                 }
         }
     }
@@ -55,6 +62,6 @@ struct StartReadingSelectedBookView: View {
 
 struct StartReadingSelectedBookView_Previews: PreviewProvider {
     static var previews: some View {
-        StartReadingSelectedBookView(isbn: "‎9780141037257")
+        StartReadingSelectedBookView(isbn: "‎9780747532743")
     }
 }

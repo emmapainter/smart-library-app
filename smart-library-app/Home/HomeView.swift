@@ -9,13 +9,6 @@ import SwiftUI
 import CodeScanner
 
 struct HomeView: View {
-    
-    @State private var isShowingScanner = false
-    @State private var scannedBook: BookData?
-    @State private var isLoading = false
-    
-    let bookDatabase = BookDatabase()
-    
     var body: some View {
         NavigationStack {
             VStack {

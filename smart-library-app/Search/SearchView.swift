@@ -10,21 +10,24 @@ import SwiftUI
 struct SearchView: View {
     @State private var searchText = ""
     @State private var searchType = "My Books"
-    @State var bookSearchResults = [BookData]()
+    @State var bookSearchResults = [Book]()
     
     let searchTypes = ["My Books", "All Books", "Users"]
-    let bookDatabase = BookDatabase()
+    let bookApi = BookApi()
     
     func search(for text:  String) {
-        bookDatabase.terminateSearch()
-        bookSearchResults = []
         switch searchType {
         case searchTypes[0]:
             break
         case searchTypes[1]:
-            bookDatabase.searchAllBooksFor(text: text, completion: {(books) -> Void in
-                bookSearchResults.append(contentsOf: books)
-            })
+            Task {
+                do {
+                    bookSearchResults = try await bookApi.searchBooks(searchQuery: text)
+                } catch let error {
+                    print(error)
+                }
+                
+            }
             break
         case searchTypes[2]: break
         default:
@@ -47,7 +50,9 @@ struct SearchView: View {
                 .padding(.horizontal)
                 .pickerStyle(SegmentedPickerStyle())
                 List(bookSearchResults) { book in
-                    BookListItem(book: book)
+                    NavigationLink(destination: StartReadingSelectedBookView(id: book.mainEdition)) {
+                        BookListItem(book: book)
+                    }
                 }
                 .searchable(text: $searchText)
                 .onSubmit(of: .search) {

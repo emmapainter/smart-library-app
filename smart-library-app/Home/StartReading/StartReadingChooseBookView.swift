@@ -11,12 +11,11 @@ import CodeScanner
 struct StartReadingChooseBookView: View {
     @Environment(\.dismiss) var dismiss
     @State private var navigationPath = NavigationPath()
-    let bookDatabase = BookDatabase()
     
     var body: some View {
         NavigationStack(path: $navigationPath) {
             VStack {
-                NavigationLink(destination: CodeScannerView(codeTypes: [.ean13], simulatedData: "‎9780141037257", completion: handleScan)) {
+                NavigationLink(destination: CodeScannerView(codeTypes: [.ean13], simulatedData: "‎9780747532743", completion: handleScan)) {
                     Text("Scan")
                 }
                 .buttonStyle(PrimaryButtonStyle())
