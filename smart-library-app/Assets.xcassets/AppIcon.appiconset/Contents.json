@@ -1,13 +1,13 @@
 {
   "images" : [
     {
-      "filename" : "bookmark.fill.png",
+      "filename" : "iOS_icon.png",
       "idiom" : "universal",
       "platform" : "ios",
       "size" : "1024x1024"
     },
     {
-      "filename" : "bookmark.fill 1.png",
+      "filename" : "watchOS_icon.png",
       "idiom" : "universal",
       "platform" : "watchos",
       "size" : "1024x1024"
