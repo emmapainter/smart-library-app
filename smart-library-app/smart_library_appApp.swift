@@ -16,6 +16,9 @@ struct smart_library_appApp: App {
         if #available(iOS 15.0, *) {
             UITabBar.appearance().scrollEdgeAppearance = appearance
         }
+        
+        // Start bluetooth paring when app opens
+        let _ = BluetoothHelper.shared
     }
     
     var body: some Scene {

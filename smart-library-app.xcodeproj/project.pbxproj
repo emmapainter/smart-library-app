@@ -15,6 +15,7 @@
 		279BB11E28F10ECF008CD22C /* BookEdition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 279BB11D28F10ECF008CD22C /* BookEdition.swift */; };
 		279BB12028F24CD6008CD22C /* Author.swift in Sources */ = {isa = PBXBuildFile; fileRef = 279BB11F28F24CD6008CD22C /* Author.swift */; };
 		279BB12228F26C2B008CD22C /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 279BB12128F26C2B008CD22C /* Utils.swift */; };
+		27B2059528F8ADF2006A1720 /* BluetoothHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27B2059428F8ADF2006A1720 /* BluetoothHelper.swift */; };
 		F814595B28DDA63D00390B65 /* smart_library_appApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = F814595A28DDA63D00390B65 /* smart_library_appApp.swift */; };
 		F814595D28DDA63D00390B65 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F814595C28DDA63D00390B65 /* ContentView.swift */; };
 		F814595F28DDA64200390B65 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F814595E28DDA64200390B65 /* Assets.xcassets */; };
@@ -41,6 +42,7 @@
 		279BB11D28F10ECF008CD22C /* BookEdition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookEdition.swift; sourceTree = "<group>"; };
 		279BB11F28F24CD6008CD22C /* Author.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Author.swift; sourceTree = "<group>"; };
 		279BB12128F26C2B008CD22C /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
+		27B2059428F8ADF2006A1720 /* BluetoothHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BluetoothHelper.swift; sourceTree = "<group>"; };
 		F814595728DDA63C00390B65 /* smart-library-app.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "smart-library-app.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F814595A28DDA63D00390B65 /* smart_library_appApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = smart_library_appApp.swift; sourceTree = "<group>"; };
 		F814595C28DDA63D00390B65 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -120,6 +122,7 @@
 				F814595A28DDA63D00390B65 /* smart_library_appApp.swift */,
 				279BB12128F26C2B008CD22C /* Utils.swift */,
 				F814595C28DDA63D00390B65 /* ContentView.swift */,
+				27B2059428F8ADF2006A1720 /* BluetoothHelper.swift */,
 				F814595E28DDA64200390B65 /* Assets.xcassets */,
 				F814596028DDA64200390B65 /* smart_library_app.entitlements */,
 				F814596128DDA64200390B65 /* Preview Content */,
@@ -264,6 +267,7 @@
 				279BB12228F26C2B008CD22C /* Utils.swift in Sources */,
 				F8EF368828EC0182009DADC4 /* SecondaryButtonStyle.swift in Sources */,
 				279BB11E28F10ECF008CD22C /* BookEdition.swift in Sources */,
+				27B2059528F8ADF2006A1720 /* BluetoothHelper.swift in Sources */,
 				F8B1EF9428EE7A63000F9071 /* ReadingBook.swift in Sources */,
 				2741A43B28F0F74F00D4E14B /* BookApiProtocol.swift in Sources */,
 				F895D6C028E95DB60042A38C /* BookListItem.swift in Sources */,
@@ -411,7 +415,9 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_CFBundleDisplayName = "Smart Library";
 				INFOPLIST_KEY_NFCReaderUsageDescription = "The application needs to access the device's NFC reader to register your bookmark.";
-				INFOPLIST_KEY_NSCameraUsageDescription = "Access to your camera is required to scan the book barcode";
+				INFOPLIST_KEY_NSBluetoothAlwaysUsageDescription = "The application needs bluetooth access to connect and communicate with bookmarks";
+				INFOPLIST_KEY_NSBluetoothPeripheralUsageDescription = "The application needs bluetooth access to connect and communicate with bookmarks ";
+				INFOPLIST_KEY_NSCameraUsageDescription = "The application needs to your camera is required to scan the book barcode";
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
@@ -454,7 +460,9 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_CFBundleDisplayName = "Smart Library";
 				INFOPLIST_KEY_NFCReaderUsageDescription = "The application needs to access the device's NFC reader to register your bookmark.";
-				INFOPLIST_KEY_NSCameraUsageDescription = "Access to your camera is required to scan the book barcode";
+				INFOPLIST_KEY_NSBluetoothAlwaysUsageDescription = "The application needs bluetooth access to connect and communicate with bookmarks";
+				INFOPLIST_KEY_NSBluetoothPeripheralUsageDescription = "The application needs bluetooth access to connect and communicate with bookmarks ";
+				INFOPLIST_KEY_NSCameraUsageDescription = "The application needs to your camera is required to scan the book barcode";
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
