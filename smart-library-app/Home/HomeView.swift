@@ -9,14 +9,17 @@ import SwiftUI
 import CodeScanner
 
 struct HomeView: View {
+    @State var navigationPath = NavigationPath()
     var body: some View {
-        NavigationStack {
+        NavigationStack(path: $navigationPath) {
             VStack {
-                NowReading()
+                NowReading(rootNavigationPath: navigationPath)
                 Spacer()
             }
             .padding(16)
             .navigationTitle("Home")
+            .navigationDestination(for: String.self, destination: { string in  Text(string)
+            })
         }
     }
 }

@@ -8,6 +8,7 @@
 import Foundation
 import CoreNFC
 import UIKit
+import SwiftUI
 
 private enum IdType {
     case id
@@ -19,6 +20,7 @@ private enum IdType {
     @Published var authors: [Author]?
     var detectedBookmark: Bookmark?
     var session: NFCTagReaderSession?
+    var navigationController: StartReadingNavigationController?
     
     let bookApi = BookApi()
     
@@ -93,6 +95,15 @@ private enum IdType {
                         message?.records.forEach { record in
                             if let string = String(data: record.payload, encoding: .ascii) {
                                 print(string)
+                                
+                                // TODO: EP - Error handling
+                                
+                                defer {
+                                    Task { @MainActor in
+                                        self.bookmarkFound(nfcMessage: string)
+                                    }
+                                }
+                                
                                 session.invalidate()
                             }
                         }
@@ -100,5 +111,13 @@ private enum IdType {
                 }
             }
         }
+    }
+    
+    // TODO: Update naming of "nfcMessage" to reflect what we are actually storing on nfc
+    func bookmarkFound(nfcMessage: String) {
+//        var readingBook = ReadingBook(book: self.book!, progress: 0)
+        // TODO: EP - Assign to bookmark
+        navigationController?.rootNavigationPath.append(nfcMessage)
+        navigationController?.isShowingSheet = false
     }
 }

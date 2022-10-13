@@ -11,6 +11,7 @@ import CodeScanner
 struct StartReadingChooseBookView: View {
     @Environment(\.dismiss) var dismiss
     @State private var navigationPath = NavigationPath()
+    var navigationController: StartReadingNavigationController?
     
     var body: some View {
         NavigationStack(path: $navigationPath) {
@@ -33,7 +34,7 @@ struct StartReadingChooseBookView: View {
             }) {
                 Text("Cancel").bold()
             })
-            .navigationDestination(for: String.self, destination: { isbn in  StartReadingSelectedBookView(isbn: isbn)
+            .navigationDestination(for: String.self, destination: { isbn in  StartReadingSelectedBookView(isbn: isbn, navigationController: navigationController)
             })
         }
     }
