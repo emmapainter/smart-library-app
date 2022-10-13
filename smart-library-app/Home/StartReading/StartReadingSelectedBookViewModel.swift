@@ -117,7 +117,10 @@ private enum IdType {
     func bookmarkFound(nfcMessage: String) {
 //        var readingBook = ReadingBook(book: self.book!, progress: 0)
         // TODO: EP - Assign to bookmark
-        navigationController?.rootNavigationPath.append(nfcMessage)
-        navigationController?.isShowingSheet = false
+        print(nfcMessage)
+        BluetoothHelper.shared.startScanning()
+  
+//        navigationController?.rootNavigationPath.append(nfcMessage)
+//        navigationController?.isShowingSheet = false
     }
 }
