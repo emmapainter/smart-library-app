@@ -30,7 +30,6 @@
 		F8B4C0FF28F938A90028F85D /* SelectedBookView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8B4C0FE28F938A90028F85D /* SelectedBookView.swift */; };
 		F8D3B23528F4F15400A08107 /* Bookmark.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8D3B23428F4F15400A08107 /* Bookmark.swift */; };
 		F8EF368828EC0182009DADC4 /* SecondaryButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8EF368728EC0182009DADC4 /* SecondaryButtonStyle.swift */; };
-		F8EF368A28EC2131009DADC4 /* UserDatabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8EF368928EC2131009DADC4 /* UserDatabase.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -58,8 +57,7 @@
 		F8B4C0FE28F938A90028F85D /* SelectedBookView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectedBookView.swift; sourceTree = "<group>"; };
 		F8D3B23428F4F15400A08107 /* Bookmark.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Bookmark.swift; sourceTree = "<group>"; };
 		F8EF368728EC0182009DADC4 /* SecondaryButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondaryButtonStyle.swift; sourceTree = "<group>"; };
-		F8EF368928EC2131009DADC4 /* UserDatabase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDatabase.swift; sourceTree = "<group>"; };
-/* End PBXFileReference section */
+		/* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		F814595428DDA63C00390B65 /* Frameworks */ = {
@@ -287,7 +285,6 @@
 				F8357C7328E6F234005E4C5E /* SearchView.swift in Sources */,
 				2741A43E28F0F7D700D4E14B /* Book.swift in Sources */,
 				F814595B28DDA63D00390B65 /* smart_library_appApp.swift in Sources */,
-				F8EF368A28EC2131009DADC4 /* UserDatabase.swift in Sources */,
 				F894A07928EFFD6000C19693 /* StartReadingSelectedBookView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
