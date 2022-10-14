@@ -9,9 +9,9 @@ import SwiftUI
 import CodeScanner
 
 struct NowReading: View {
-    @State var currentBooks = [ReadingBook]()
     @State var isShowingSheet = false
     @Binding var rootNavigationPath: NavigationPath
+    @StateObject var viewModel = NowReadingViewModel()
    
     var body: some View {
         VStack {

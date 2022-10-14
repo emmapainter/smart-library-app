@@ -9,6 +9,7 @@ import Foundation
 import CoreNFC
 
 struct Bookmark {
-    var uuid: UUID
-    var bookId: String
+    var bluetoothIdentifier: String
+    var bookISBN13: String
+    var currentPageNumber: Int
 }
