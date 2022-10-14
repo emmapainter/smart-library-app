@@ -10,10 +10,9 @@ import CodeScanner
 
 struct NowReading: View {
     @State var currentBooks = [ReadingBook]()
-    @StateObject var navigationController: StartReadingNavigationController = StartReadingNavigationController()
-    var rootNavigationPath: NavigationPath
+    @State var isShowingSheet = false
+    @Binding var rootNavigationPath: NavigationPath
    
-
     var body: some View {
         VStack {
             HStack {
@@ -24,7 +23,7 @@ struct NowReading: View {
             }
             .padding(.top, 36.0)
             Button {
-                navigationController.isShowingSheet = true
+                isShowingSheet = true
             } label: {
                 HStack {
                     Text("Start a new book")
@@ -33,19 +32,13 @@ struct NowReading: View {
             }
             .buttonStyle(SecondaryButtonStyle())
         }
-        .sheet(isPresented: $navigationController.isShowingSheet) {
-            StartReadingChooseBookView(navigationController: navigationController)
+        .sheet(isPresented: $isShowingSheet) {
+            StartReadingChooseBookView(isShowingSheet: $isShowingSheet, rootNavigationPath: $rootNavigationPath)
         }
         .onAppear(perform: {
-            navigationController.rootNavigationPath = rootNavigationPath
+            viewModel.getBooks()
         })
     }
     
     
-}
-
-struct NowReadingView_Previews: PreviewProvider {
-    static var previews: some View {
-        NowReading(rootNavigationPath: NavigationPath())
-    }
 }

@@ -13,7 +13,7 @@ struct HomeView: View {
     var body: some View {
         NavigationStack(path: $navigationPath) {
             VStack {
-                NowReading(rootNavigationPath: navigationPath)
+                NowReading(rootNavigationPath: $navigationPath)
                 Spacer()
             }
             .padding(16)
