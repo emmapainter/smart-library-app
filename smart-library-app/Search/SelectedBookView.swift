@@ -1,27 +1,25 @@
 //
-//  StartReadingSelectedBookView.swift
+//  SelectedBookView.swift
 //  smart-library-app
 //
-//  Created by Emma Painter on 7/10/2022.
+//  Created by Emma Painter on 14/10/2022.
 //
 
 import SwiftUI
 import CoreNFC
 
-struct StartReadingSelectedBookView: View {
+struct SelectedBookView: View {
     var id: String?
     var isbn: String?
     @StateObject var viewModel = SelectedBookViewModel()
     @State private var showingAlert = false
-    @Binding var rootNavigationPath: NavigationPath
-    @Binding var isShowingSheet: Bool
     
     var body: some View {
             VStack {
                 if let _ = viewModel.book {
                     VStack {
                         bookInfo
-                        Button("Start Reading") {
+                        Button("Connect Bookmark") {
                             scanBookmark(self)
                         }
                         .buttonStyle(PrimaryButtonStyle())
@@ -34,8 +32,8 @@ struct StartReadingSelectedBookView: View {
                     }
                     .onChange(of: viewModel.hasScannedBookmark) { newValue in
                         if newValue {
-                            isShowingSheet = false
-                            rootNavigationPath.append(viewModel.nfcMessage)
+                            // TODO: EP - What happens when bookmark is added from here?
+                            print("Bookmark added")
                         }
                     }
                 } else {
@@ -56,6 +54,9 @@ struct StartReadingSelectedBookView: View {
     
     var bookInfo: some View {
         VStack {
+            Text("Connect your bookmark to start reading.")
+                .font(.largeTitle)
+                .fontWeight(.semibold)
             Spacer()
             bookCover
             Text(viewModel.book?.title ?? "-")
@@ -94,5 +95,11 @@ struct StartReadingSelectedBookView: View {
         viewModel.session = NFCTagReaderSession(pollingOption: .iso14443, delegate: viewModel)
         viewModel.session?.alertMessage = "Tap your bookmark to assign it to this book."
         viewModel.session?.begin()
+    }
+}
+
+struct SelectedBookView_Previews: PreviewProvider {
+    static var previews: some View {
+        SelectedBookView()
     }
 }

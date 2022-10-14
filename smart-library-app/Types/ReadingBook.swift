@@ -7,10 +7,8 @@
 
 import UIKit
 
+// used for displaying information in the app
 struct ReadingBook {
-    var id: String
-    var title: String?
-    var authors: String?
-    var coverUrl: String?
-    var progress: Int = 0
+    var book: BookEdition
+    var bookmark: Bookmark
 }

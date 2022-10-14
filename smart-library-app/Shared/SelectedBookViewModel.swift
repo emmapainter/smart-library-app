@@ -1,5 +1,5 @@
 //
-//  StartReadingSelectedBookViewModel.swift
+//  SelectedBookViewModel.swift
 //  smart-library-app
 //
 //  Created by Emma Painter on 7/10/2022.
@@ -15,12 +15,13 @@ private enum IdType {
     case isbn13
 }
 
-@MainActor class StartReadingSelectedBookViewModel: NSObject, ObservableObject, NFCTagReaderSessionDelegate {
+@MainActor class SelectedBookViewModel: NSObject, ObservableObject, NFCTagReaderSessionDelegate {
     @Published var book: BookEdition?
     @Published var authors: [Author]?
     var detectedBookmark: Bookmark?
     var session: NFCTagReaderSession?
-    var navigationController: StartReadingNavigationController?
+    @Published var hasScannedBookmark = false
+    var nfcMessage = ""
     
     let bookApi = BookApi()
     
@@ -70,14 +71,16 @@ private enum IdType {
     }
     
     nonisolated func tagReaderSessionDidBecomeActive(_ session: NFCTagReaderSession) {
-        print("Reader session active")
+        // This method is required to conform to the protocol but I don't think we need anything here
     }
 
 
     nonisolated func tagReaderSession(_ session: NFCTagReaderSession, didInvalidateWithError error: Error) {
+        // TODO: EP - handle error
         print("Reader session complete")
     }
 
+    // TODO: EP - Error handling for this entire method
     nonisolated func tagReaderSession(_ session: NFCTagReaderSession, didDetect tags: [NFCTag]) {
         for nfcTag in tags {
             session.connect(to: nfcTag) { error in
@@ -96,11 +99,11 @@ private enum IdType {
                             if let string = String(data: record.payload, encoding: .ascii) {
                                 print(string)
                                 
-                                // TODO: EP - Error handling
-                                
                                 defer {
                                     Task { @MainActor in
-                                        self.bookmarkFound(nfcMessage: string)
+                                        // TODO: EP - send data to firebase
+                                        self.nfcMessage = string
+                                        self.hasScannedBookmark = true
                                     }
                                 }
                                 
@@ -111,16 +114,5 @@ private enum IdType {
                 }
             }
         }
-    }
-    
-    // TODO: Update naming of "nfcMessage" to reflect what we are actually storing on nfc
-    func bookmarkFound(nfcMessage: String) {
-//        var readingBook = ReadingBook(book: self.book!, progress: 0)
-        // TODO: EP - Assign to bookmark
-        print(nfcMessage)
-//        BluetoothHelper.shared.startScanning()
-  
-        navigationController?.rootNavigationPath.append(nfcMessage)
-        navigationController?.isShowingSheet = false
     }
 }

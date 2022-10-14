@@ -11,7 +11,8 @@ import CodeScanner
 struct StartReadingChooseBookView: View {
     @Environment(\.dismiss) var dismiss
     @State private var navigationPath = NavigationPath()
-    var navigationController: StartReadingNavigationController?
+    @Binding var isShowingSheet: Bool
+    @Binding var rootNavigationPath: NavigationPath
     
     var body: some View {
         NavigationStack(path: $navigationPath) {
@@ -34,7 +35,7 @@ struct StartReadingChooseBookView: View {
             }) {
                 Text("Cancel").bold()
             })
-            .navigationDestination(for: String.self, destination: { isbn in  StartReadingSelectedBookView(isbn: isbn, navigationController: navigationController)
+            .navigationDestination(for: String.self, destination: { isbn in  StartReadingSelectedBookView(isbn: isbn, rootNavigationPath: $rootNavigationPath, isShowingSheet: $isShowingSheet)
             })
         }
     }
@@ -49,11 +50,5 @@ struct StartReadingChooseBookView: View {
             // TODO: RK - Error handling
             print("Something went wrong... \(error.localizedDescription)")
         }
-    }
-}
-
-struct ChooseBookSheetView_Previews: PreviewProvider {
-    static var previews: some View {
-        StartReadingChooseBookView()
     }
 }
