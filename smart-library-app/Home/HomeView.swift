@@ -15,6 +15,20 @@ struct HomeView: View {
             VStack {
                 NowReading(rootNavigationPath: navigationPath)
                 Spacer()
+                
+                Button {
+                    BluetoothHelper.shared.startScanning(btDeviceUuid: UUID(uuidString: "8A31C81E-FBA7-DB87-45BE-D53ADA6CCFC7"))
+                } label: {
+                    Text("Emma")
+                }
+                .buttonStyle(SecondaryButtonStyle())
+                
+                Button {
+                    BluetoothHelper.shared.startScanning(btDeviceUuid: UUID(uuidString: "0B0CF953-75E3-62B9-7267-D4138276C946"))
+                } label: {
+                    Text("Riley")
+                }
+                .buttonStyle(SecondaryButtonStyle())
             }
             .padding(16)
             .navigationTitle("Home")

@@ -28,6 +28,8 @@ class BluetoothHelper: NSObject, CBPeripheralDelegate, CBCentralManagerDelegate 
     private var txCharacteristic: CBCharacteristic!
     private var rxCharacteristic: CBCharacteristic!
     
+    private var deviceToConnectTo: UUID?
+    
     override private init() {
         super.init()
         centralManager = CBCentralManager(delegate: self, queue: nil)
@@ -39,6 +41,7 @@ class BluetoothHelper: NSObject, CBPeripheralDelegate, CBCentralManagerDelegate 
                       print("Is Powered Off.")
                   case .poweredOn:
                       print("Is Powered On.")
+//                        startScanning(btDeviceUuid: UUID(uuidString: "8A31C81E-FBA7-DB87-45BE-D53ADA6CCFC7"))
                   case .unsupported:
                       print("Is Unsupported.")
                   case .unauthorized:
@@ -52,9 +55,11 @@ class BluetoothHelper: NSObject, CBPeripheralDelegate, CBCentralManagerDelegate 
                 }
     }
     
-    func startScanning() -> Void {
+    func startScanning(btDeviceUuid: UUID?) -> Void {
       // Start Scanning
-      centralManager?.scanForPeripherals(withServices: [CBUUIDs.BLEService_UUID])
+        centralManager?.scanForPeripherals(withServices: [CBUUIDs.BLEService_UUID])
+        self.deviceToConnectTo = btDeviceUuid
+        
     }
     
     func centralManager(_ central: CBCentralManager, didDiscover peripheral: CBPeripheral,advertisementData: [String : Any], rssi RSSI: NSNumber) {
@@ -62,12 +67,14 @@ class BluetoothHelper: NSObject, CBPeripheralDelegate, CBCentralManagerDelegate 
         self.peripheral = peripheral
         self.peripheral.delegate = self
 
-        print("Peripheral Discovered: \(peripheral)")
+        print("Peripheral Discovered: \(peripheral.identifier)")
         print("Peripheral name: \(peripheral.name)")
-        print ("Advertisement Data : \(advertisementData)")
+//        print ("Advertisement Data : \(advertisementData)")
         
-        centralManager?.connect(self.peripheral, options: nil)
-            
+        if (peripheral.identifier == self.deviceToConnectTo) {
+            centralManager?.connect(self.peripheral, options: nil)
+        }
+        
     }
     
     func centralManager(_ central: CBCentralManager, didConnect peripheral: CBPeripheral) {
@@ -75,7 +82,7 @@ class BluetoothHelper: NSObject, CBPeripheralDelegate, CBCentralManagerDelegate 
     }
     
     func peripheral(_ peripheral: CBPeripheral, didDiscoverServices error: Error?) {
-            print("*******************************************************")
+//            print("*******************************************************")
 
             if ((error) != nil) {
                 print("Error discovering services: \(error!.localizedDescription)")
@@ -88,7 +95,7 @@ class BluetoothHelper: NSObject, CBPeripheralDelegate, CBCentralManagerDelegate 
             for service in services {
                 peripheral.discoverCharacteristics(nil, for: service)
             }
-            print("Discovered Services: \(services)")
+//        print("Discovered Services: \(services)")
     }
     
     func peripheral(_ peripheral: CBPeripheral, didDiscoverCharacteristicsFor service: CBService, error: Error?) {
@@ -133,7 +140,7 @@ class BluetoothHelper: NSObject, CBPeripheralDelegate, CBCentralManagerDelegate 
         }
         characteristicASCIIValue = ASCIIstring
         
-        print("Value Recieved: \((characteristicASCIIValue as String))")
+//        print("Value Recieved: \((characteristicASCIIValue as String))")
     }
     
     func writeOutgoingValue(data: String){

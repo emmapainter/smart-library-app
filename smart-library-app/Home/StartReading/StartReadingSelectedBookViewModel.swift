@@ -118,9 +118,9 @@ private enum IdType {
 //        var readingBook = ReadingBook(book: self.book!, progress: 0)
         // TODO: EP - Assign to bookmark
         print(nfcMessage)
-        BluetoothHelper.shared.startScanning()
+//        BluetoothHelper.shared.startScanning()
   
-//        navigationController?.rootNavigationPath.append(nfcMessage)
-//        navigationController?.isShowingSheet = false
+        navigationController?.rootNavigationPath.append(nfcMessage)
+        navigationController?.isShowingSheet = false
     }
 }
