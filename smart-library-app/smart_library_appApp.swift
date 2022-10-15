@@ -8,7 +8,7 @@
 import SwiftUI
 
 @main
-struct smart_library_appApp: App {
+struct smart_library_appApp: App, BluetoothControllerDelegate {
     
     init(){
         let appearance = UITabBarAppearance()
@@ -18,7 +18,8 @@ struct smart_library_appApp: App {
         }
         
         // Start bluetooth paring when app opens
-        let _ = BluetoothHelper.shared
+        let _ = BluetoothController.shared
+        BluetoothController.shared.addDelegate(delegate: self)
     }
     
     var body: some Scene {
@@ -38,5 +39,10 @@ struct smart_library_appApp: App {
                     }
             }
         }
+    }
+    
+    func bluetoothDeviceDidSendData(deviceUUID: UUID, data: String) {
+        print("Device: \(deviceUUID.description)")
+        print("Data: \(data)")
     }
 }
