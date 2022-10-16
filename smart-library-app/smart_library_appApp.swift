@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Firebase
 
 @main
 struct smart_library_appApp: App {
@@ -16,6 +17,7 @@ struct smart_library_appApp: App {
         if #available(iOS 15.0, *) {
             UITabBar.appearance().scrollEdgeAppearance = appearance
         }
+        FirebaseApp.configure()
     }
     
     var body: some Scene {
