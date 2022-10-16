@@ -24,6 +24,12 @@ struct BluetoothPairingView: View, BluetoothControllerDelegate {
                 Text(bookmarkConnected.description)
             }
             .padding(.top, 36.0)
+            
+            Button(action: {
+                BluetoothController.shared.writeOutgoingValue(data: "hello", btDeviceUuid: UUID(uuidString: "8A31C81E-FBA7-DB87-45BE-D53ADA6CCFC7")!)
+            }, label: {
+                Text("Send a message")
+            })
         }
         .onAppear {
             BluetoothController.shared.addDelegate(delegate: self)

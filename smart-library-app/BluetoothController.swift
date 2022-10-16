@@ -100,6 +100,7 @@ class BluetoothController: NSObject, CBPeripheralDelegate, CBCentralManagerDeleg
         }
         
         for characteristic in characteristics {
+            print(characteristic.uuid)
             if characteristic.uuid.isEqual(CBUUIDs.BLE_Characteristic_uuid_Rx)  {
                 peripheral.setNotifyValue(true, for: characteristic)
                 peripheral.readValue(for: characteristic)
@@ -119,18 +120,22 @@ class BluetoothController: NSObject, CBPeripheralDelegate, CBCentralManagerDeleg
         }
     }
     
-//    func writeOutgoingValue(data: String){
-//
-//        let valueString = (data as NSString).data(using: String.Encoding.utf8.rawValue)
-//
-//        if let peripheral = self.peripheral {
-//
-//          if let txCharacteristic = txCharacteristic {
-//              print("sending message")
-//              self.peripheral.writeValue(valueString!, for: txCharacteristic, type: CBCharacteristicWriteType.withResponse)
-//              }
-//          }
-//      }
+    func writeOutgoingValue(data: String, btDeviceUuid: UUID){
+        let valueString = (data as NSString).data(using: String.Encoding.utf8.rawValue)
+        var txCharacteristic: CBCharacteristic?
+        guard let peripheral = self.peripherals.last(where: {$0.identifier == btDeviceUuid}) else { return }
+        guard let services = peripheral.services else {return}
+        
+        for service in services {
+            txCharacteristic = service.characteristics?.first(where: {$0.uuid == CBUUIDs.BLE_Characteristic_uuid_Tx})
+        }
+        
+        guard let txCharacteristic = txCharacteristic else { return }
+        
+        print("sending message")
+        print(txCharacteristic)
+        peripheral.writeValue(valueString!, for: txCharacteristic, type: CBCharacteristicWriteType.withoutResponse)
+      }
     
     func addDelegate(delegate: BluetoothControllerDelegate) -> Void {
         self.delegates.append(delegate)
