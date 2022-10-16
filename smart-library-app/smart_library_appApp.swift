@@ -18,6 +18,8 @@ struct smart_library_appApp: App {
             UITabBar.appearance().scrollEdgeAppearance = appearance
         }
         FirebaseApp.configure()
+        
+        
     }
     
     var body: some Scene {
@@ -27,7 +29,7 @@ struct smart_library_appApp: App {
                     .tabItem {
                         Label("Home", systemImage: "house")
                     }
-                ContentView()
+                SignInView()
                     .tabItem {
                         Label("Bookshelf", systemImage: "books.vertical")
                     }
