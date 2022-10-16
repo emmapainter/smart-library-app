@@ -13,7 +13,7 @@ struct SearchView: View {
     @State var bookSearchResults = [Book]()
     
     let searchTypes = ["My Books", "All Books", "Users"]
-    let bookApi = BookApi()
+    let libraryAPI = SmartLibraryAPI()
     
     func search(for text:  String) {
         switch searchType {
@@ -22,7 +22,7 @@ struct SearchView: View {
         case searchTypes[1]:
             Task {
                 do {
-                    bookSearchResults = try await bookApi.searchBooks(searchQuery: text)
+                    bookSearchResults = try await libraryAPI.searchBooks(searchQuery: text)
                 } catch let error {
                     print(error)
                 }

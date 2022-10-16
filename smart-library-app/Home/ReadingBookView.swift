@@ -57,7 +57,7 @@ struct ReadingBookView: View {
                     print("sheet") // TODO: EP - open action sheet
                 } label: {
                     Image(systemName: "ellipsis.circle.fill")
-                        .foregroundStyle(Color.accentColor, .gray)
+                        .foregroundStyle(Color.accentColor, Color.init(red: 238, green: 238, blue: 240, opacity: 1))
                 }
                 
             }
