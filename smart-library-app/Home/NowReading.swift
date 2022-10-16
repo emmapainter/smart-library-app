@@ -31,6 +31,28 @@ struct NowReading: View {
                 }
             }
             .buttonStyle(SecondaryButtonStyle())
+            ScrollView(.horizontal) {
+                HStack {
+                    if let books = viewModel.readingBooks {
+                        ForEach(books, id: \.self) { book in
+                            NavigationLink {
+                                ReadingBookView(book: book)
+                            } label: {
+                                VStack {
+                                    ProgressBookCover(readingBook: book)
+                                    Text(book.book.title)
+                                        .foregroundColor(.black)
+                                        .lineLimit(1)
+                                }
+                            }
+                            .frame(width: 150)
+                        }
+                    } else {
+                        ProgressView()
+                    }
+                }
+                .frame(height: 300)
+            }
         }
         .sheet(isPresented: $isShowingSheet) {
             StartReadingChooseBookView(isShowingSheet: $isShowingSheet, rootNavigationPath: $rootNavigationPath)

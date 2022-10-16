@@ -11,7 +11,7 @@ import SwiftUI
 
 @MainActor class NowReadingViewModel: NSObject, ObservableObject {
     let userAPI = UserAPI()
-    var readingBooks: [ReadingBook]?
+    @Published var readingBooks: [ReadingBook]?
     
     
     func getBooks() {
