@@ -19,7 +19,7 @@ struct ReadingProgressViewStyle: ProgressViewStyle {
                 HStack {
                     Capsule()
                         .fill(Color.white)
-                        .frame(width: metrics.size.width * fractionCompleted)    // TODO: EP - use actual progress
+                        .frame(width: metrics.size.width * fractionCompleted)
                     Spacer()
                 }
             }

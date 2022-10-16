@@ -8,16 +8,25 @@
 import Foundation
 
 private let API_BASE = "openlibrary.org"
+private let SECONDARY_API_BASE = "www.googleapis.com"
 
 class BookApi: BookApiProtocol {
     func getBookEdition(id: String) async throws -> BookEdition {
         let result = try await getApiResponse(endpoint: "/book/\(id).json", queryItems: nil, type: BookEditionData.self)
-        return BookEdition.init(result)
+        var book = BookEdition.init(result)
+        if let isbn13 = book.isbn13, book.pages == nil {
+            book.pages = try await getNumberOfPages(isbn13: isbn13)
+        }
+        return book
     }
     
     func getBookEdition(isbn13: String) async throws -> BookEdition {
         let result = try await getApiResponse(endpoint: "/isbn/\(isbn13).json", queryItems: nil, type: BookEditionData.self)
-        return BookEdition.init(result)
+        var book = BookEdition.init(result)
+        if book.pages == nil {
+            book.pages = try await getNumberOfPages(isbn13: isbn13)
+        }
+        return book
     }
     
     func getBookAuthors(authorIds: [String]) async throws -> [Author] {
@@ -31,6 +40,17 @@ class BookApi: BookApiProtocol {
         return authors
     }
     
+    func getNumberOfPages(isbn13: String) async throws -> Int? {
+        let queryItems = [URLQueryItem(name: "q", value: "isbn13:\(isbn13)")]
+        let result = try await getApiResponse(endpoint: "/books/v1/volumes", queryItems: queryItems, type: GoogleVolume.self, secondaryAPI: true)
+        return result.books?[0].pages
+    }
+    
+    func getBookCover(isbn13: String) async throws -> String? {
+        let result = try await getApiResponse(endpoint: "/books/v1/volumes?q=isbn:\(isbn13)", queryItems: nil, type: GoogleVolume.self)
+        return result.books?[0].imageURL
+    }
+    
     func searchBooks(searchQuery: String) async throws -> [Book] {
         let queryItems = [URLQueryItem(name: "q", value: searchQuery)]
         let results = try await getApiResponse(endpoint: "/search.json", queryItems: queryItems, type: BookSearchResult.self)
@@ -39,13 +59,13 @@ class BookApi: BookApiProtocol {
         return books
     }
     
-    private func getUrlRequest(endpoint: String, queryItems: [URLQueryItem]?) -> URLRequest {
+    private func getUrlRequest(endpoint: String, queryItems: [URLQueryItem]?, secondaryAPI: Bool) -> URLRequest {
         
         // RK: The mock data passed in from the scanning library adds this character to the start, so I'm removing it here
         let endpoint = endpoint.replacingOccurrences(of: "\u{200E}", with: "")
         var urlComponents = URLComponents()
         urlComponents.scheme = "https"
-        urlComponents.host = API_BASE
+        urlComponents.host = secondaryAPI ? SECONDARY_API_BASE : API_BASE
         urlComponents.path =  endpoint
         urlComponents.queryItems = queryItems
 
@@ -57,8 +77,8 @@ class BookApi: BookApiProtocol {
         return URLRequest(url: requestUrl)
     }
     
-    private func getApiResponse<T>(endpoint: String, queryItems: [URLQueryItem]?, type: T.Type) async throws -> T where T: Decodable {
-        let urlRequest = getUrlRequest(endpoint: endpoint, queryItems: queryItems)
+    private func getApiResponse<T>(endpoint: String, queryItems: [URLQueryItem]?, type: T.Type, secondaryAPI: Bool = false) async throws -> T where T: Decodable {
+        let urlRequest = getUrlRequest(endpoint: endpoint, queryItems: queryItems, secondaryAPI: secondaryAPI)
         let (data, _) = try await URLSession.shared.data(for: urlRequest)
         let decoder = JSONDecoder()
         

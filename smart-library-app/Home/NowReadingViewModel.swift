@@ -18,7 +18,6 @@ import SwiftUI
         Task {
             do {
                 try await self.getCurrentBooks()
-                print(readingBooks)
             } catch let error {
                 print(error.localizedDescription) // TODO: EP - Error handling
             }
