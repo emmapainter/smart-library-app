@@ -15,16 +15,34 @@ class UserAPI: UserAPIProtocol {
         do {
             let bookmarks = try await getBookmarks()
             for bookmark in bookmarks {
-                let book = try await bookAPI.getBookEdition(isbn13: bookmark.bookISBN13)
-                books.append(ReadingBook(book: book, bookmark: bookmark))
+                books.append(try await self.getBookForBookmark(bookmark: bookmark))
             }
-        } catch {
+            return books
+        } catch let error{
             // TODO: EP - Error handling
+            print(error.localizedDescription)
         }
         return [ReadingBook]()
     }
     
     func getBookmarks() async throws -> [Bookmark] {
-        return [Bookmark(bluetoothIdentifier: "1", bookISBN13: "9781761102943", currentPageNumber: 100), Bookmark(bluetoothIdentifier: "2", bookISBN13: "9781529029581", currentPageNumber: 19)]
+        // TODO: EP - actual implementation
+        return [
+            Bookmark(bluetoothIdentifier: "1", bookISBN13: "9781408891384", currentPageNumber: 350),
+            Bookmark(bluetoothIdentifier: "2", bookISBN13: "9781529029581", currentPageNumber: 19),
+            Bookmark(bluetoothIdentifier: "3", bookISBN13: "9780241988725", currentPageNumber: 170),
+            Bookmark(bluetoothIdentifier: "4", bookISBN13: "9780571334650", currentPageNumber: 98),
+            Bookmark(bluetoothIdentifier: "5", bookISBN13: "9781786892720", currentPageNumber: 63)
+        ]
+    }
+    
+    func getBookmarkWith(id bluetoothId: String) async throws -> Bookmark {
+        // TODO: EP - actual implementation
+        return Bookmark(bluetoothIdentifier: "2", bookISBN13: "9781529029581", currentPageNumber: 19)
+    }
+    
+    func getBookForBookmark(bookmark: Bookmark) async throws -> ReadingBook {
+        let book = try await bookAPI.getBookEdition(isbn13: bookmark.bookISBN13)
+        return ReadingBook(book: book, bookmark: bookmark)
     }
 }

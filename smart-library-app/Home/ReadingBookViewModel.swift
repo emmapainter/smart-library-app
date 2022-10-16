@@ -8,6 +8,22 @@
 import Foundation
 import UIKit
 
-class ReadingBookViewModel: NSObject, ObservableObject {
+@MainActor class ReadingBookViewModel: NSObject, ObservableObject {
     @Published var book: ReadingBook?
+    let userAPI = UserAPI()
+    
+    func getBook(bookmarkBtId: String) {
+        Task {
+            do {
+                try await self.getBookAsync(bookmarkBtId: bookmarkBtId)
+            } catch {
+                // TODO: EP - Error handling
+            }
+        }
+    }
+    
+    private func getBookAsync(bookmarkBtId: String) async throws {
+        let bookmark = try await userAPI.getBookmarkWith(id: bookmarkBtId)
+        book = try await userAPI.getBookForBookmark(bookmark: bookmark)
+    }
 }

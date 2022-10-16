@@ -9,7 +9,6 @@ import SwiftUI
 import CodeScanner
 
 struct StartReadingChooseBookView: View {
-    @Environment(\.dismiss) var dismiss
     @State private var navigationPath = NavigationPath()
     @Binding var isShowingSheet: Bool
     @Binding var rootNavigationPath: NavigationPath
@@ -23,15 +22,15 @@ struct StartReadingChooseBookView: View {
                 .buttonStyle(PrimaryButtonStyle())
                 Text("or")
                     .padding()
-                Button("Search") {
-                    print("Search")
-                }
+                NavigationLink(destination: SearchView(), label: {
+                    Text("Search")
+                })
                 .buttonStyle(SecondaryButtonStyle())
             }
             .padding(16)
             .navigationBarTitle(Text("Choose a Book"), displayMode: .inline)
             .navigationBarItems(leading: Button(action: {
-                self.dismiss()
+                self.isShowingSheet = false
             }) {
                 Text("Cancel").bold()
             })
