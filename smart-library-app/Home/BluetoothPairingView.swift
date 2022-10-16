@@ -29,12 +29,6 @@ struct BluetoothPairingView: View, BluetoothControllerDelegate {
             BluetoothController.shared.addDelegate(delegate: self)
             BluetoothController.shared.startScanning(btDeviceUuid: UUID(uuidString: btId))
         }
-//        .sheet(isPresented: $isShowingSheet) {
-//            StartReadingChooseBookView(isShowingSheet: $isShowingSheet, rootNavigationPath: $rootNavigationPath)
-//        }
-//        .onAppear(perform: {
-//            viewModel.getBooks()
-//        })
     }
     
     func bluetoothDeviceDidConnect(deviceUUID: UUID) {
