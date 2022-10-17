@@ -7,12 +7,11 @@
 
 import Foundation
 
+@MainActor
 class User: ObservableObject {
     @Published var bookmarks = [Bookmark]()
     @Published var readingBooks = [ReadingBook]()
     private let smartLibrary = SmartLibraryAPI()
-//    private let db = DatabaseController()
-//    private let bookAPI = BookAPI()
     
     init() {
         Task { @MainActor in
@@ -30,10 +29,10 @@ class User: ObservableObject {
         Task {
             do {
 //                try await db.addBookmark(bookmark: newBookmark)
-//                bookmarks.append(newBookmark)
-//
-//                let book = try await getBookForBookmark(bookmark: newBookmark)
-//                self.readingBooks.append(book)
+                bookmarks.append(newBookmark)
+
+                let book = try await getBookForBookmark(bookmark: newBookmark)
+                self.readingBooks.append(book)
             }
         }
     }
