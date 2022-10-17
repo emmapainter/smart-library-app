@@ -29,6 +29,10 @@ struct ReadingPerDayCharts: View {
                 MinutesPerDayChart(readingSessions: readingSessions)
             }
         }
+        .padding()
+        .background(.white)
+        .cornerRadius(20)
+        
         
     }
 }
@@ -46,5 +50,6 @@ struct ReadingPerDayCharts_Previews: PreviewProvider {
                 ReadingSession(startTime: DateFormat().formatter.date(from: "17/08/2022 10:00")!, endTime: DateFormat().formatter.date(from: "17/08/2022 11:58"), numberOfPages: 7, bookISBN13: "9781786892720", bookmarkId: "1")
             ]
         )
+        .background(.red)
     }
 }
