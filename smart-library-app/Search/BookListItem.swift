@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct BookListItem: View {
-    let bookApi = BookApi()
     var book: Book
 
     var body: some View {
