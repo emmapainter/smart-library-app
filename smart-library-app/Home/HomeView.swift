@@ -18,7 +18,7 @@ struct HomeView: View {
             }
             .padding(16)
             .navigationTitle("Home")
-            .navigationDestination(for: String.self, destination: { string in  Text(string)
+            .navigationDestination(for: String.self, destination: { btId in  BluetoothPairingView(btId: btId)
             })
         }
     }
@@ -29,3 +29,4 @@ struct HomeView_Previews: PreviewProvider {
         HomeView()
     }
 }
+

@@ -10,7 +10,7 @@ import UIKit
 import SwiftUI
 
 @MainActor class NowReadingViewModel: NSObject, ObservableObject {
-    let userAPI = UserAPI()
+    let libraryAPI = SmartLibraryAPI()
     @Published var readingBooks: [ReadingBook]?
     
     func getBooks() {
@@ -24,6 +24,6 @@ import SwiftUI
     }
     
     private func getCurrentBooks() async throws {
-        readingBooks = try await userAPI.getCurrentBooks()
+        readingBooks = try await libraryAPI.getCurrentBooks()
     }
 }

@@ -9,7 +9,7 @@ import SwiftUI
 import Firebase
 
 @main
-struct smart_library_appApp: App {
+struct smart_library_appApp: App, BluetoothControllerDelegate {
     
     init(){
         let appearance = UITabBarAppearance()
@@ -17,6 +17,10 @@ struct smart_library_appApp: App {
         if #available(iOS 15.0, *) {
             UITabBar.appearance().scrollEdgeAppearance = appearance
         }
+        
+        // Start bluetooth paring when app opens
+        let _ = BluetoothController.shared
+        BluetoothController.shared.addDelegate(delegate: self)
         FirebaseApp.configure()
         
         
@@ -40,5 +44,10 @@ struct smart_library_appApp: App {
             }
             .environmentObject(User())
         }
+    }
+    
+    func bluetoothDeviceDidSendData(deviceUUID: UUID, data: String) {
+        print("Device: \(deviceUUID.description)")
+        print("Data: \(data)")
     }
 }

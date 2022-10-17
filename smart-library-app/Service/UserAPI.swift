@@ -38,12 +38,20 @@ class UserAPI: UserAPIProtocol {
     }
     
     func getBookmarkWith(id bluetoothId: String) async throws -> Bookmark {
-        // TODO: EP - actual implementation
+        // TODO: EP - get from Firebase
         return Bookmark(bluetoothIdentifier: "2", bookISBN13: "9781529029581", currentPageNumber: 19)
     }
     
-    func getBookForBookmark(bookmark: Bookmark) async throws -> ReadingBook {
-        let book = try await bookAPI.getBookEdition(isbn13: bookmark.bookISBN13)
-        return ReadingBook(book: book, bookmark: bookmark)
+    func getReadingSessionsFor(book isbn13: String) async throws -> [ReadingSession] {
+        // TODO: EP - get from Firebase
+        return [
+            ReadingSession(startTime: DateFormat().formatter.date(from: "10/08/2022 10:00")!, endTime: DateFormat().formatter.date(from: "10/08/2022 10:30"), numberOfPages: 20, bookISBN13: "9781786892720", bookmarkId: "1"),
+            ReadingSession(startTime: DateFormat().formatter.date(from: "11/08/2022 16:07")!, endTime: DateFormat().formatter.date(from: "11/08/2022 16:15"), numberOfPages: 5, bookISBN13: "9781786892720", bookmarkId: "1"),
+            ReadingSession(startTime: DateFormat().formatter.date(from: "12/08/2022 10:00")!, endTime: DateFormat().formatter.date(from: "12/08/2022 10:17"), numberOfPages: 16, bookISBN13: "9781786892720", bookmarkId: "1"),
+            ReadingSession(startTime: DateFormat().formatter.date(from: "13/08/2022 10:00")!, endTime: DateFormat().formatter.date(from: "13/08/2022 10:38"), numberOfPages: 3, bookISBN13: "9781786892720", bookmarkId: "1"),
+            ReadingSession(startTime: DateFormat().formatter.date(from: "14/08/2022 10:00")!, endTime: DateFormat().formatter.date(from: "14/08/2022 10:50"), numberOfPages: 27, bookISBN13: "9781786892720", bookmarkId: "1"),
+            ReadingSession(startTime: DateFormat().formatter.date(from: "15/08/2022 10:00")!, endTime: DateFormat().formatter.date(from: "15/08/2022 10:20"), numberOfPages: 31, bookISBN13: "9781786892720", bookmarkId: "1"),
+            ReadingSession(startTime: DateFormat().formatter.date(from: "17/08/2022 10:00")!, endTime: DateFormat().formatter.date(from: "17/08/2022 11:58"), numberOfPages: 7, bookISBN13: "9781786892720", bookmarkId: "1")
+        ]
     }
 }

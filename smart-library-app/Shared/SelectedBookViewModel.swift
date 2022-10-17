@@ -23,7 +23,7 @@ private enum IdType {
     @Published var hasScannedBookmark = false
     var nfcMessage = ""
     
-    let bookApi = BookApi()
+    let libraryAPI = SmartLibraryAPI()
     
     func getBook(isbn: String) {
         Task {
@@ -53,16 +53,16 @@ private enum IdType {
         // Fetch book data from api
         switch idType {
         case .id:
-            book = try await bookApi.getBookEdition(id: id)
+            book = try await libraryAPI.getBookEdition(id: id)
             break
         case .isbn13:
-            book = try await bookApi.getBookEdition(isbn13: id)
+            book = try await libraryAPI.getBookEdition(isbn13: id)
             break
         }
         
         // Fetch authors (if the book data has any authors)
         if let book = book, let authorIds = book.authorIds {
-            authors = try await bookApi.getBookAuthors(authorIds: authorIds)
+            authors = try await libraryAPI.getBookAuthors(authorIds: authorIds)
         }
         
         // set view model data together to avoid them appearing on the screen separately

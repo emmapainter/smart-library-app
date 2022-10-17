@@ -9,9 +9,8 @@
 /* Begin PBXBuildFile section */
 		2741A3F628ED804F00D4E14B /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2741A3F528ED804F00D4E14B /* HomeView.swift */; };
 		2741A3FC28ED8E3200D4E14B /* CodeScanner in Frameworks */ = {isa = PBXBuildFile; productRef = 2741A3FB28ED8E3200D4E14B /* CodeScanner */; };
-		2741A43B28F0F74F00D4E14B /* BookApiProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2741A43A28F0F74F00D4E14B /* BookApiProtocol.swift */; };
+		2741A43B28F0F74F00D4E14B /* BookAPIProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2741A43A28F0F74F00D4E14B /* BookAPIProtocol.swift */; };
 		2741A43E28F0F7D700D4E14B /* Book.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2741A43D28F0F7D700D4E14B /* Book.swift */; };
-		2741A44228F0FACD00D4E14B /* BookApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2741A44128F0FACD00D4E14B /* BookApi.swift */; };
 		27455CEA28FC0ED5005781AA /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 27455CE928FC0ED5005781AA /* GoogleService-Info.plist */; };
 		27455CED28FC1138005781AA /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 27455CEC28FC1138005781AA /* FirebaseAuth */; };
 		27455CEF28FC1138005781AA /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 27455CEE28FC1138005781AA /* FirebaseFirestore */; };
@@ -20,15 +19,26 @@
 		2779980528FCAF420064C750 /* AuthController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2779980428FCAF420064C750 /* AuthController.swift */; };
 		2779980728FCE0580064C750 /* DatabaseController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2779980628FCE0580064C750 /* DatabaseController.swift */; };
 		2779980928FD08AE0064C750 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2779980828FD08AE0064C750 /* User.swift */; };
+		2741A44228F0FACD00D4E14B /* BookAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2741A44128F0FACD00D4E14B /* BookAPI.swift */; };
 		279BB11E28F10ECF008CD22C /* BookEdition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 279BB11D28F10ECF008CD22C /* BookEdition.swift */; };
 		279BB12028F24CD6008CD22C /* Author.swift in Sources */ = {isa = PBXBuildFile; fileRef = 279BB11F28F24CD6008CD22C /* Author.swift */; };
 		279BB12228F26C2B008CD22C /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 279BB12128F26C2B008CD22C /* Utils.swift */; };
+		27B2059528F8ADF2006A1720 /* BluetoothController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27B2059428F8ADF2006A1720 /* BluetoothController.swift */; };
+		27B2059928F94B3C006A1720 /* BluetoothPairingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27B2059828F94B3C006A1720 /* BluetoothPairingView.swift */; };
+		27B2059B28FABFCC006A1720 /* BluetoothControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27B2059A28FABFCC006A1720 /* BluetoothControllerDelegate.swift */; };
 		F814595B28DDA63D00390B65 /* smart_library_appApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = F814595A28DDA63D00390B65 /* smart_library_appApp.swift */; };
 		F814595D28DDA63D00390B65 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F814595C28DDA63D00390B65 /* ContentView.swift */; };
 		F814595F28DDA64200390B65 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F814595E28DDA64200390B65 /* Assets.xcassets */; };
 		F814596328DDA64200390B65 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F814596228DDA64200390B65 /* Preview Assets.xcassets */; };
 		F8357C7328E6F234005E4C5E /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8357C7228E6F234005E4C5E /* SearchView.swift */; };
 		F854A65328FBD5AE00F64B0A /* GoogleBook.swift in Sources */ = {isa = PBXBuildFile; fileRef = F854A65228FBD5AE00F64B0A /* GoogleBook.swift */; };
+		F854A65528FCC85800F64B0A /* SmartLibraryAPIProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = F854A65428FCC85800F64B0A /* SmartLibraryAPIProtocol.swift */; };
+		F854A65728FCC98A00F64B0A /* SmartLibraryAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = F854A65628FCC98A00F64B0A /* SmartLibraryAPI.swift */; };
+		F854A65928FCDAF200F64B0A /* ReadingSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = F854A65828FCDAF200F64B0A /* ReadingSession.swift */; };
+		F854A65B28FCDCD100F64B0A /* PagesPerDayChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = F854A65A28FCDCD100F64B0A /* PagesPerDayChart.swift */; };
+		F854A65D28FCE8C700F64B0A /* MinutesPerDayChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = F854A65C28FCE8C700F64B0A /* MinutesPerDayChart.swift */; };
+		F854A65F28FCEB1600F64B0A /* ReadingPerDayCharts.swift in Sources */ = {isa = PBXBuildFile; fileRef = F854A65E28FCEB1600F64B0A /* ReadingPerDayCharts.swift */; };
+		F854A66128FCEE2700F64B0A /* ReadingDataCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F854A66028FCEE2700F64B0A /* ReadingDataCell.swift */; };
 		F894A07428EFB4C700C19693 /* StartReadingChooseBookView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F894A07328EFB4C600C19693 /* StartReadingChooseBookView.swift */; };
 		F894A07628EFD21C00C19693 /* PrimaryButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = F894A07528EFD21C00C19693 /* PrimaryButtonStyle.swift */; };
 		F894A07928EFFD6000C19693 /* StartReadingSelectedBookView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F894A07828EFFD6000C19693 /* StartReadingSelectedBookView.swift */; };
@@ -50,9 +60,9 @@
 
 /* Begin PBXFileReference section */
 		2741A3F528ED804F00D4E14B /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
-		2741A43A28F0F74F00D4E14B /* BookApiProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookApiProtocol.swift; sourceTree = "<group>"; };
+		2741A43A28F0F74F00D4E14B /* BookAPIProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookAPIProtocol.swift; sourceTree = "<group>"; };
 		2741A43D28F0F7D700D4E14B /* Book.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Book.swift; sourceTree = "<group>"; };
-		2741A44128F0FACD00D4E14B /* BookApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookApi.swift; sourceTree = "<group>"; };
+		2741A44128F0FACD00D4E14B /* BookAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookAPI.swift; sourceTree = "<group>"; };
 		27455CE928FC0ED5005781AA /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		27455CF428FC17C1005781AA /* SignInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInView.swift; sourceTree = "<group>"; };
 		2779980428FCAF420064C750 /* AuthController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthController.swift; sourceTree = "<group>"; };
@@ -61,6 +71,10 @@
 		279BB11D28F10ECF008CD22C /* BookEdition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookEdition.swift; sourceTree = "<group>"; };
 		279BB11F28F24CD6008CD22C /* Author.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Author.swift; sourceTree = "<group>"; };
 		279BB12128F26C2B008CD22C /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
+		27B2059428F8ADF2006A1720 /* BluetoothController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BluetoothController.swift; sourceTree = "<group>"; };
+		27B2059828F94B3C006A1720 /* BluetoothPairingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BluetoothPairingView.swift; sourceTree = "<group>"; };
+		27B2059A28FABFCC006A1720 /* BluetoothControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BluetoothControllerDelegate.swift; sourceTree = "<group>"; };
+		27B2059C28FADC71006A1720 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		F814595728DDA63C00390B65 /* smart-library-app.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "smart-library-app.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F814595A28DDA63D00390B65 /* smart_library_appApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = smart_library_appApp.swift; sourceTree = "<group>"; };
 		F814595C28DDA63D00390B65 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -69,6 +83,13 @@
 		F814596228DDA64200390B65 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		F8357C7228E6F234005E4C5E /* SearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
 		F854A65228FBD5AE00F64B0A /* GoogleBook.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleBook.swift; sourceTree = "<group>"; };
+		F854A65428FCC85800F64B0A /* SmartLibraryAPIProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmartLibraryAPIProtocol.swift; sourceTree = "<group>"; };
+		F854A65628FCC98A00F64B0A /* SmartLibraryAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmartLibraryAPI.swift; sourceTree = "<group>"; };
+		F854A65828FCDAF200F64B0A /* ReadingSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadingSession.swift; sourceTree = "<group>"; };
+		F854A65A28FCDCD100F64B0A /* PagesPerDayChart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PagesPerDayChart.swift; sourceTree = "<group>"; };
+		F854A65C28FCE8C700F64B0A /* MinutesPerDayChart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MinutesPerDayChart.swift; sourceTree = "<group>"; };
+		F854A65E28FCEB1600F64B0A /* ReadingPerDayCharts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadingPerDayCharts.swift; sourceTree = "<group>"; };
+		F854A66028FCEE2700F64B0A /* ReadingDataCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadingDataCell.swift; sourceTree = "<group>"; };
 		F894A07328EFB4C600C19693 /* StartReadingChooseBookView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartReadingChooseBookView.swift; sourceTree = "<group>"; };
 		F894A07528EFD21C00C19693 /* PrimaryButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrimaryButtonStyle.swift; sourceTree = "<group>"; };
 		F894A07828EFFD6000C19693 /* StartReadingSelectedBookView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartReadingSelectedBookView.swift; sourceTree = "<group>"; };
@@ -108,6 +129,7 @@
 			children = (
 				F894A07A28EFFD6500C19693 /* StartReading */,
 				2741A3F528ED804F00D4E14B /* HomeView.swift */,
+				27B2059828F94B3C006A1720 /* BluetoothPairingView.swift */,
 				F8B1EF9028EE79B1000F9071 /* NowReading.swift */,
 				F8D4EC0828F7A70B00470437 /* NowReadingViewModel.swift */,
 				F8D60B7C28F668DF00AE6A52 /* ReadingBookView.swift */,
@@ -119,10 +141,12 @@
 		2741A43928F0F73000D4E14B /* Service */ = {
 			isa = PBXGroup;
 			children = (
-				2741A43A28F0F74F00D4E14B /* BookApiProtocol.swift */,
-				2741A44128F0FACD00D4E14B /* BookApi.swift */,
+				2741A43A28F0F74F00D4E14B /* BookAPIProtocol.swift */,
+				2741A44128F0FACD00D4E14B /* BookAPI.swift */,
 				F8D4EC0228F78FE200470437 /* UserAPIProtocol.swift */,
 				F8D4EC0628F792D200470437 /* UserAPI.swift */,
+				F854A65428FCC85800F64B0A /* SmartLibraryAPIProtocol.swift */,
+				F854A65628FCC98A00F64B0A /* SmartLibraryAPI.swift */,
 				2779980428FCAF420064C750 /* AuthController.swift */,
 				2779980628FCE0580064C750 /* DatabaseController.swift */,
 			);
@@ -156,6 +180,7 @@
 		F814595928DDA63D00390B65 /* smart-library-app */ = {
 			isa = PBXGroup;
 			children = (
+				27B2059C28FADC71006A1720 /* Info.plist */,
 				27455CE928FC0ED5005781AA /* GoogleService-Info.plist */,
 				F8B4C10228F939330028F85D /* Shared */,
 				F8D4EC0A28F7A9BD00470437 /* Components */,
@@ -168,6 +193,8 @@
 				F814595A28DDA63D00390B65 /* smart_library_appApp.swift */,
 				279BB12128F26C2B008CD22C /* Utils.swift */,
 				F814595C28DDA63D00390B65 /* ContentView.swift */,
+				27B2059428F8ADF2006A1720 /* BluetoothController.swift */,
+				27B2059A28FABFCC006A1720 /* BluetoothControllerDelegate.swift */,
 				2779980828FD08AE0064C750 /* User.swift */,
 				F814595E28DDA64200390B65 /* Assets.xcassets */,
 				F814596028DDA64200390B65 /* smart_library_app.entitlements */,
@@ -212,6 +239,7 @@
 				279BB11D28F10ECF008CD22C /* BookEdition.swift */,
 				279BB11F28F24CD6008CD22C /* Author.swift */,
 				F854A65228FBD5AE00F64B0A /* GoogleBook.swift */,
+				F854A65828FCDAF200F64B0A /* ReadingSession.swift */,
 			);
 			path = Types;
 			sourceTree = "<group>";
@@ -228,6 +256,10 @@
 			isa = PBXGroup;
 			children = (
 				F8D4EC0B28F7AA3500470437 /* ProgressBookCover.swift */,
+				F854A65A28FCDCD100F64B0A /* PagesPerDayChart.swift */,
+				F854A65C28FCE8C700F64B0A /* MinutesPerDayChart.swift */,
+				F854A65E28FCEB1600F64B0A /* ReadingPerDayCharts.swift */,
+				F854A66028FCEE2700F64B0A /* ReadingDataCell.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -323,30 +355,40 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F854A65F28FCEB1600F64B0A /* ReadingPerDayCharts.swift in Sources */,
 				F894A07628EFD21C00C19693 /* PrimaryButtonStyle.swift in Sources */,
 				279BB12228F26C2B008CD22C /* Utils.swift in Sources */,
 				F8EF368828EC0182009DADC4 /* SecondaryButtonStyle.swift in Sources */,
 				F8D4EC0328F78FE200470437 /* UserAPIProtocol.swift in Sources */,
 				2779980928FD08AE0064C750 /* User.swift in Sources */,
 				279BB11E28F10ECF008CD22C /* BookEdition.swift in Sources */,
+				27B2059528F8ADF2006A1720 /* BluetoothController.swift in Sources */,
+				F854A66128FCEE2700F64B0A /* ReadingDataCell.swift in Sources */,
 				F8B1EF9428EE7A63000F9071 /* ReadingBook.swift in Sources */,
 				F8B4C0FF28F938A90028F85D /* SelectedBookView.swift in Sources */,
+				2741A43B28F0F74F00D4E14B /* BookAPIProtocol.swift in Sources */,
 				2779980528FCAF420064C750 /* AuthController.swift in Sources */,
-				2741A43B28F0F74F00D4E14B /* BookApiProtocol.swift in Sources */,
 				F895D6C028E95DB60042A38C /* BookListItem.swift in Sources */,
 				F894A07F28F006FF00C19693 /* SelectedBookViewModel.swift in Sources */,
+				F854A65928FCDAF200F64B0A /* ReadingSession.swift in Sources */,
 				F8D4EC0C28F7AA3500470437 /* ProgressBookCover.swift in Sources */,
 				F8D4EBFF28F686A200470437 /* ReadingBookViewModel.swift in Sources */,
 				F8D3B23528F4F15400A08107 /* Bookmark.swift in Sources */,
+				F854A65528FCC85800F64B0A /* SmartLibraryAPIProtocol.swift in Sources */,
 				F814595D28DDA63D00390B65 /* ContentView.swift in Sources */,
+				27B2059B28FABFCC006A1720 /* BluetoothControllerDelegate.swift in Sources */,
+				27B2059928F94B3C006A1720 /* BluetoothPairingView.swift in Sources */,
 				F8B4C10628F946180028F85D /* ReadingProgressViewStyle.swift in Sources */,
 				F854A65328FBD5AE00F64B0A /* GoogleBook.swift in Sources */,
-				2741A44228F0FACD00D4E14B /* BookApi.swift in Sources */,
+				2741A44228F0FACD00D4E14B /* BookAPI.swift in Sources */,
 				F8D4EC0928F7A70B00470437 /* NowReadingViewModel.swift in Sources */,
 				279BB12028F24CD6008CD22C /* Author.swift in Sources */,
+				F854A65728FCC98A00F64B0A /* SmartLibraryAPI.swift in Sources */,
 				F8B1EF9128EE79B1000F9071 /* NowReading.swift in Sources */,
 				F894A07428EFB4C700C19693 /* StartReadingChooseBookView.swift in Sources */,
+				F854A65B28FCDCD100F64B0A /* PagesPerDayChart.swift in Sources */,
 				2741A3F628ED804F00D4E14B /* HomeView.swift in Sources */,
+				F854A65D28FCE8C700F64B0A /* MinutesPerDayChart.swift in Sources */,
 				F8357C7328E6F234005E4C5E /* SearchView.swift in Sources */,
 				2779980728FCE0580064C750 /* DatabaseController.swift in Sources */,
 				27455CF528FC17C1005781AA /* SignInView.swift in Sources */,
@@ -483,9 +525,12 @@
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "smart-library-app/Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = "Smart Library";
 				INFOPLIST_KEY_NFCReaderUsageDescription = "The application needs to access the device's NFC reader to register your bookmark.";
-				INFOPLIST_KEY_NSCameraUsageDescription = "Access to your camera is required to scan the book barcode";
+				INFOPLIST_KEY_NSBluetoothAlwaysUsageDescription = "The application needs bluetooth access to connect and communicate with bookmarks";
+				INFOPLIST_KEY_NSBluetoothPeripheralUsageDescription = "The application needs bluetooth access to connect and communicate with bookmarks ";
+				INFOPLIST_KEY_NSCameraUsageDescription = "The application needs to your camera is required to scan the book barcode";
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
@@ -526,9 +571,12 @@
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "smart-library-app/Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = "Smart Library";
 				INFOPLIST_KEY_NFCReaderUsageDescription = "The application needs to access the device's NFC reader to register your bookmark.";
-				INFOPLIST_KEY_NSCameraUsageDescription = "Access to your camera is required to scan the book barcode";
+				INFOPLIST_KEY_NSBluetoothAlwaysUsageDescription = "The application needs bluetooth access to connect and communicate with bookmarks";
+				INFOPLIST_KEY_NSBluetoothPeripheralUsageDescription = "The application needs bluetooth access to connect and communicate with bookmarks ";
+				INFOPLIST_KEY_NSCameraUsageDescription = "The application needs to your camera is required to scan the book barcode";
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;

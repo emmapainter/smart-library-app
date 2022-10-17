@@ -10,7 +10,7 @@ import UIKit
 
 @MainActor class ReadingBookViewModel: NSObject, ObservableObject {
     @Published var book: ReadingBook?
-    let userAPI = UserAPI()
+    let libraryAPI = SmartLibraryAPI()
     
     func getBook(bookmarkBtId: String) {
         Task {
@@ -23,7 +23,6 @@ import UIKit
     }
     
     private func getBookAsync(bookmarkBtId: String) async throws {
-        let bookmark = try await userAPI.getBookmarkWith(id: bookmarkBtId)
-        book = try await userAPI.getBookForBookmark(bookmark: bookmark)
+        book = try await libraryAPI.getBookForBookmarkWith(id: bookmarkBtId)
     }
 }

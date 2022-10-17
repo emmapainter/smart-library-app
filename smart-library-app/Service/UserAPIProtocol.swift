@@ -8,6 +8,7 @@
 import Foundation
 
 protocol UserAPIProtocol {
-    func getCurrentBooks() async throws -> [ReadingBook]
     func getBookmarks() async throws -> [Bookmark]
+    func getBookmarkWith(id bluetoothId: String) async throws -> Bookmark
+    func getReadingSessionsFor(book isbn13: String) async throws -> [ReadingSession]
 }
