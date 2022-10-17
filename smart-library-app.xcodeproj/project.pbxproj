@@ -18,6 +18,8 @@
 		27455CF128FC1138005781AA /* FirebaseFirestoreSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 27455CF028FC1138005781AA /* FirebaseFirestoreSwift */; };
 		27455CF528FC17C1005781AA /* SignInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27455CF428FC17C1005781AA /* SignInView.swift */; };
 		2779980528FCAF420064C750 /* AuthController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2779980428FCAF420064C750 /* AuthController.swift */; };
+		2779980728FCE0580064C750 /* DatabaseController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2779980628FCE0580064C750 /* DatabaseController.swift */; };
+		2779980928FD08AE0064C750 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2779980828FD08AE0064C750 /* User.swift */; };
 		279BB11E28F10ECF008CD22C /* BookEdition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 279BB11D28F10ECF008CD22C /* BookEdition.swift */; };
 		279BB12028F24CD6008CD22C /* Author.swift in Sources */ = {isa = PBXBuildFile; fileRef = 279BB11F28F24CD6008CD22C /* Author.swift */; };
 		279BB12228F26C2B008CD22C /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 279BB12128F26C2B008CD22C /* Utils.swift */; };
@@ -54,6 +56,8 @@
 		27455CE928FC0ED5005781AA /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		27455CF428FC17C1005781AA /* SignInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInView.swift; sourceTree = "<group>"; };
 		2779980428FCAF420064C750 /* AuthController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthController.swift; sourceTree = "<group>"; };
+		2779980628FCE0580064C750 /* DatabaseController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseController.swift; sourceTree = "<group>"; };
+		2779980828FD08AE0064C750 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		279BB11D28F10ECF008CD22C /* BookEdition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookEdition.swift; sourceTree = "<group>"; };
 		279BB11F28F24CD6008CD22C /* Author.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Author.swift; sourceTree = "<group>"; };
 		279BB12128F26C2B008CD22C /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
@@ -120,6 +124,7 @@
 				F8D4EC0228F78FE200470437 /* UserAPIProtocol.swift */,
 				F8D4EC0628F792D200470437 /* UserAPI.swift */,
 				2779980428FCAF420064C750 /* AuthController.swift */,
+				2779980628FCE0580064C750 /* DatabaseController.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -163,6 +168,7 @@
 				F814595A28DDA63D00390B65 /* smart_library_appApp.swift */,
 				279BB12128F26C2B008CD22C /* Utils.swift */,
 				F814595C28DDA63D00390B65 /* ContentView.swift */,
+				2779980828FD08AE0064C750 /* User.swift */,
 				F814595E28DDA64200390B65 /* Assets.xcassets */,
 				F814596028DDA64200390B65 /* smart_library_app.entitlements */,
 				F814596128DDA64200390B65 /* Preview Content */,
@@ -321,6 +327,7 @@
 				279BB12228F26C2B008CD22C /* Utils.swift in Sources */,
 				F8EF368828EC0182009DADC4 /* SecondaryButtonStyle.swift in Sources */,
 				F8D4EC0328F78FE200470437 /* UserAPIProtocol.swift in Sources */,
+				2779980928FD08AE0064C750 /* User.swift in Sources */,
 				279BB11E28F10ECF008CD22C /* BookEdition.swift in Sources */,
 				F8B1EF9428EE7A63000F9071 /* ReadingBook.swift in Sources */,
 				F8B4C0FF28F938A90028F85D /* SelectedBookView.swift in Sources */,
@@ -341,6 +348,7 @@
 				F894A07428EFB4C700C19693 /* StartReadingChooseBookView.swift in Sources */,
 				2741A3F628ED804F00D4E14B /* HomeView.swift in Sources */,
 				F8357C7328E6F234005E4C5E /* SearchView.swift in Sources */,
+				2779980728FCE0580064C750 /* DatabaseController.swift in Sources */,
 				27455CF528FC17C1005781AA /* SignInView.swift in Sources */,
 				F8D60B7D28F668DF00AE6A52 /* ReadingBookView.swift in Sources */,
 				2741A43E28F0F7D700D4E14B /* Book.swift in Sources */,

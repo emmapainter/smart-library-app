@@ -38,6 +38,7 @@ struct smart_library_appApp: App {
                         Label("Search", systemImage: "magnifyingglass")
                     }
             }
+            .environmentObject(User())
         }
     }
 }

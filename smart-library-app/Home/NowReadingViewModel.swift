@@ -13,7 +13,6 @@ import SwiftUI
     let userAPI = UserAPI()
     @Published var readingBooks: [ReadingBook]?
     
-    
     func getBooks() {
         Task {
             do {

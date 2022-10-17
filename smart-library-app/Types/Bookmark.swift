@@ -8,7 +8,7 @@
 import Foundation
 import CoreNFC
 
-struct Bookmark {
+struct Bookmark: Codable {
     var bluetoothIdentifier: String
     var bookISBN13: String
     var currentPageNumber: Int
