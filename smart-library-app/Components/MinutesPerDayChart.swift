@@ -13,16 +13,22 @@ struct MinutesPerDayChart: View {
     
     var body: some View {
         VStack {
-            Chart {
-                ForEach(readingSessions) { session in
-                    BarMark(
-                        x: .value("Day", session.startTime, unit: .day),
-                        y: .value("Minutes", session.getTimeReading() ?? 0)
-                    )
+            if (readingSessions.count == 0) {
+                Text("Your reading stats will display once you start reading")
+                    .foregroundColor(Color.gray)
+                    .multilineTextAlignment(.center)
+            } else {
+                Chart {
+                    ForEach(readingSessions) { session in
+                        BarMark(
+                            x: .value("Day", session.startTime, unit: .day),
+                            y: .value("Minutes", session.getTimeReading() ?? 0)
+                        )
+                    }
                 }
+                .frame(height: 250)
+                .padding()
             }
-            .frame(height: 250)
-            .padding()
         }
     }
 }
