@@ -14,4 +14,14 @@ struct ReadingSession: Identifiable {
     var numberOfPages: Int?
     var bookISBN13: String
     var bookmarkId: String
+    
+    func getTimeReading() -> Int? {
+        guard let endTime = endTime else {
+            return nil
+        }
+        
+        let diffSeconds = Int(endTime.timeIntervalSince1970 - startTime.timeIntervalSince1970)
+        return diffSeconds / 60
+    }
 }
+

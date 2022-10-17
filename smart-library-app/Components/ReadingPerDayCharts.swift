@@ -1,35 +1,41 @@
 //
-//  PagesPerDayChart.swift
+//  ReadingPerDayCharts.swift
 //  smart-library-app
 //
 //  Created by Emma Painter on 17/10/2022.
 //
 
 import SwiftUI
-import Charts
 
-struct PagesPerDayChart: View {
+struct ReadingPerDayCharts: View {
+    @State private var chartType = "Pages"
+    let chartTypes = ["Pages", "Minutes"]
     var readingSessions: [ReadingSession]
     
     var body: some View {
         VStack {
-            Chart {
-                ForEach(readingSessions) { session in
-                    BarMark(
-                        x: .value("Day", session.startTime, unit: .day),
-                        y: .value("Pages", session.numberOfPages ?? 0)
-                    )
+            Text("Reading Per Day")
+            Picker("Pick your chart type", selection: $chartType) {
+                ForEach(chartTypes, id: \.self) {type in
+                    Text(type)
+                        .tag(type)
                 }
             }
-            .frame(height: 250)
             .padding()
+            .pickerStyle(SegmentedPickerStyle())
+            if chartType == "Pages" {
+                PagesPerDayChart(readingSessions: readingSessions)
+            } else {
+                MinutesPerDayChart(readingSessions: readingSessions)
+            }
         }
+        
     }
 }
 
-struct PagesPerDayChart_Previews: PreviewProvider {
+struct ReadingPerDayCharts_Previews: PreviewProvider {
     static var previews: some View {
-        PagesPerDayChart(
+        ReadingPerDayCharts(
             readingSessions: [
                 ReadingSession(startTime: DateFormat().formatter.date(from: "10/08/2022 10:00")!, endTime: DateFormat().formatter.date(from: "10/08/2022 10:30"), numberOfPages: 20, bookISBN13: "9781786892720", bookmarkId: "1"),
                 ReadingSession(startTime: DateFormat().formatter.date(from: "11/08/2022 16:07")!, endTime: DateFormat().formatter.date(from: "11/08/2022 16:15"), numberOfPages: 5, bookISBN13: "9781786892720", bookmarkId: "1"),
@@ -40,13 +46,5 @@ struct PagesPerDayChart_Previews: PreviewProvider {
                 ReadingSession(startTime: DateFormat().formatter.date(from: "17/08/2022 10:00")!, endTime: DateFormat().formatter.date(from: "17/08/2022 11:58"), numberOfPages: 7, bookISBN13: "9781786892720", bookmarkId: "1")
             ]
         )
-    }
-}
-
-struct DateFormat {
-    let formatter = DateFormatter()
-    
-    init() {
-        formatter.dateFormat = "dd/MM/yyyy HH:mm"
     }
 }

@@ -1,5 +1,5 @@
 //
-//  PagesPerDayChart.swift
+//  MinutesPerDayChart.swift
 //  smart-library-app
 //
 //  Created by Emma Painter on 17/10/2022.
@@ -8,7 +8,7 @@
 import SwiftUI
 import Charts
 
-struct PagesPerDayChart: View {
+struct MinutesPerDayChart: View {
     var readingSessions: [ReadingSession]
     
     var body: some View {
@@ -17,7 +17,7 @@ struct PagesPerDayChart: View {
                 ForEach(readingSessions) { session in
                     BarMark(
                         x: .value("Day", session.startTime, unit: .day),
-                        y: .value("Pages", session.numberOfPages ?? 0)
+                        y: .value("Minutes", session.getTimeReading() ?? 0)
                     )
                 }
             }
@@ -27,9 +27,9 @@ struct PagesPerDayChart: View {
     }
 }
 
-struct PagesPerDayChart_Previews: PreviewProvider {
+struct MinutesPerDayChart_Previews: PreviewProvider {
     static var previews: some View {
-        PagesPerDayChart(
+        MinutesPerDayChart(
             readingSessions: [
                 ReadingSession(startTime: DateFormat().formatter.date(from: "10/08/2022 10:00")!, endTime: DateFormat().formatter.date(from: "10/08/2022 10:30"), numberOfPages: 20, bookISBN13: "9781786892720", bookmarkId: "1"),
                 ReadingSession(startTime: DateFormat().formatter.date(from: "11/08/2022 16:07")!, endTime: DateFormat().formatter.date(from: "11/08/2022 16:15"), numberOfPages: 5, bookISBN13: "9781786892720", bookmarkId: "1"),
@@ -40,13 +40,5 @@ struct PagesPerDayChart_Previews: PreviewProvider {
                 ReadingSession(startTime: DateFormat().formatter.date(from: "17/08/2022 10:00")!, endTime: DateFormat().formatter.date(from: "17/08/2022 11:58"), numberOfPages: 7, bookISBN13: "9781786892720", bookmarkId: "1")
             ]
         )
-    }
-}
-
-struct DateFormat {
-    let formatter = DateFormatter()
-    
-    init() {
-        formatter.dateFormat = "dd/MM/yyyy HH:mm"
     }
 }

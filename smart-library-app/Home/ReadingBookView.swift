@@ -40,8 +40,7 @@ struct ReadingBookView: View {
                         .fill(Color.init(uiColor: .lightGray))
                         .frame(height: 0.5)
                         .padding(.vertical)
-                    Text("Pages Per Day")
-                    PagesPerDayChart(readingSessions: book.sessions)
+                    ReadingPerDayCharts(readingSessions: book.sessions)
                 } else {
                     ProgressView()
                         .onAppear {
