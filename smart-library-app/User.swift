@@ -10,21 +10,15 @@ import Foundation
 class User: ObservableObject {
     @Published var bookmarks = [Bookmark]()
     @Published var readingBooks = [ReadingBook]()
-    private let db = DatabaseController()
-    private let bookAPI = BookApi()
+    private let smartLibrary = SmartLibraryAPI()
+//    private let db = DatabaseController()
+//    private let bookAPI = BookAPI()
     
     init() {
         Task { @MainActor in
             do {
-                let bookmarks = try await db.getBookmarks()
-                guard let bookmarks = bookmarks else { return }
-                self.bookmarks = bookmarks
-                
-                for bookmark in bookmarks {
-                    let book = try await getBookForBookmark(bookmark: bookmark)
-                    self.readingBooks.append(book)
-                }
-                
+                self.bookmarks = try await self.smartLibrary.getBookmarks()
+                self.readingBooks = try await self.smartLibrary.getCurrentBooks()
             } catch let error {
                 print(error)
             }
@@ -35,17 +29,17 @@ class User: ObservableObject {
         let newBookmark = Bookmark(bluetoothIdentifier: bluetoothIdentifier, bookISBN13: bookISBN13, currentPageNumber: currentPageNumber)
         Task {
             do {
-                try await db.addBookmark(bookmark: newBookmark)
-                bookmarks.append(newBookmark)
-                
-                let book = try await getBookForBookmark(bookmark: newBookmark)
-                self.readingBooks.append(book)
+//                try await db.addBookmark(bookmark: newBookmark)
+//                bookmarks.append(newBookmark)
+//
+//                let book = try await getBookForBookmark(bookmark: newBookmark)
+//                self.readingBooks.append(book)
             }
         }
     }
     
     func getBookForBookmark(bookmark: Bookmark) async throws -> ReadingBook {
-        let book = try await bookAPI.getBookEdition(isbn13: bookmark.bookISBN13)
+        let book = try await smartLibrary.getBookEdition(isbn13: bookmark.bookISBN13)
         return ReadingBook(book: book, bookmark: bookmark)
     }
 }
