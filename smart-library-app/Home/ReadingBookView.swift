@@ -37,9 +37,11 @@ struct ReadingBookView: View {
                         .buttonStyle(SecondaryButtonStyle())
                     }
                     Rectangle()
-                        .fill(.gray)
-                        .frame(height: 1)
+                        .fill(Color.init(uiColor: .lightGray))
+                        .frame(height: 0.5)
                         .padding(.vertical)
+                    Text("Pages Per Day")
+                    PagesPerDayChart(readingSessions: book.sessions)
                 } else {
                     ProgressView()
                         .onAppear {

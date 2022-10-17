@@ -20,4 +20,5 @@ struct ReadingBook: Hashable {
     
     var book: BookEdition
     var bookmark: Bookmark
+    var sessions = [ReadingSession]()
 }

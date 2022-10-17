@@ -23,7 +23,6 @@ import UIKit
     }
     
     private func getBookAsync(bookmarkBtId: String) async throws {
-        let bookmark = try await libraryAPI.getBookmarkWith(id: bookmarkBtId)
-        book = try await libraryAPI.getBookForBookmark(bookmark: bookmark)
+        book = try await libraryAPI.getBookForBookmarkWith(id: bookmarkBtId)
     }
 }

@@ -7,7 +7,8 @@
 
 import Foundation
 
-struct ReadingSession {
+struct ReadingSession: Identifiable {
+    var id = UUID()
     var startTime: Date
     var endTime: Date?
     var numberOfPages: Int?

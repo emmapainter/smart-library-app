@@ -31,7 +31,8 @@ struct SmartLibraryAPI: SmartLibraryAPIProtocol, UserAPIProtocol, BookAPIProtoco
     func getBookForBookmarkWith(id bluetoothId: String) async throws -> ReadingBook {
         let bookmark = try await userAPI.getBookmarkWith(id: bluetoothId)
         let book = try await bookAPI.getBookEdition(isbn13: bookmark.bookISBN13)
-        return ReadingBook(book: book, bookmark: bookmark)
+        let sessions = try await userAPI.getReadingSessionsFor(book: bookmark.bookISBN13)
+        return ReadingBook(book: book, bookmark: bookmark, sessions: sessions)
     }
     
     func searchAllBooks(for searchQuery: String) async throws -> [Book] {
@@ -45,6 +46,10 @@ struct SmartLibraryAPI: SmartLibraryAPIProtocol, UserAPIProtocol, BookAPIProtoco
     
     func getBookmarkWith(id bluetoothId: String) async throws -> Bookmark {
         return try await userAPI.getBookmarkWith(id: bluetoothId)
+    }
+    
+    func getReadingSessionsFor(book isbn13: String) async throws -> [ReadingSession] {
+        return try await userAPI.getReadingSessionsFor(book: isbn13)
     }
     
     // MARK: BookAPIProtocol methods
