@@ -22,8 +22,6 @@ struct smart_library_appApp: App, BluetoothControllerDelegate {
         let _ = BluetoothController.shared
         BluetoothController.shared.addDelegate(delegate: self)
         FirebaseApp.configure()
-        
-        
     }
     
     var body: some Scene {

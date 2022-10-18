@@ -11,6 +11,7 @@
 		2741A3FC28ED8E3200D4E14B /* CodeScanner in Frameworks */ = {isa = PBXBuildFile; productRef = 2741A3FB28ED8E3200D4E14B /* CodeScanner */; };
 		2741A43B28F0F74F00D4E14B /* BookAPIProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2741A43A28F0F74F00D4E14B /* BookAPIProtocol.swift */; };
 		2741A43E28F0F7D700D4E14B /* Book.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2741A43D28F0F7D700D4E14B /* Book.swift */; };
+		2741A44228F0FACD00D4E14B /* BookAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2741A44128F0FACD00D4E14B /* BookAPI.swift */; };
 		27455CEA28FC0ED5005781AA /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 27455CE928FC0ED5005781AA /* GoogleService-Info.plist */; };
 		27455CED28FC1138005781AA /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 27455CEC28FC1138005781AA /* FirebaseAuth */; };
 		27455CEF28FC1138005781AA /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 27455CEE28FC1138005781AA /* FirebaseFirestore */; };
@@ -19,7 +20,6 @@
 		2779980528FCAF420064C750 /* AuthController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2779980428FCAF420064C750 /* AuthController.swift */; };
 		2779980728FCE0580064C750 /* DatabaseController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2779980628FCE0580064C750 /* DatabaseController.swift */; };
 		2779980928FD08AE0064C750 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2779980828FD08AE0064C750 /* User.swift */; };
-		2741A44228F0FACD00D4E14B /* BookAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2741A44128F0FACD00D4E14B /* BookAPI.swift */; };
 		279BB11E28F10ECF008CD22C /* BookEdition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 279BB11D28F10ECF008CD22C /* BookEdition.swift */; };
 		279BB12028F24CD6008CD22C /* Author.swift in Sources */ = {isa = PBXBuildFile; fileRef = 279BB11F28F24CD6008CD22C /* Author.swift */; };
 		279BB12228F26C2B008CD22C /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 279BB12128F26C2B008CD22C /* Utils.swift */; };
@@ -49,10 +49,6 @@
 		F8B4C0FF28F938A90028F85D /* SelectedBookView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8B4C0FE28F938A90028F85D /* SelectedBookView.swift */; };
 		F8B4C10628F946180028F85D /* ReadingProgressViewStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8B4C10528F946180028F85D /* ReadingProgressViewStyle.swift */; };
 		F8D3B23528F4F15400A08107 /* Bookmark.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8D3B23428F4F15400A08107 /* Bookmark.swift */; };
-		F8D4EBFF28F686A200470437 /* ReadingBookViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8D4EBFE28F686A200470437 /* ReadingBookViewModel.swift */; };
-		F8D4EC0328F78FE200470437 /* UserAPIProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8D4EC0228F78FE200470437 /* UserAPIProtocol.swift */; };
-		F8D4EC0728F792D200470437 /* UserAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8D4EC0628F792D200470437 /* UserAPI.swift */; };
-		F8D4EC0928F7A70B00470437 /* NowReadingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8D4EC0828F7A70B00470437 /* NowReadingViewModel.swift */; };
 		F8D4EC0C28F7AA3500470437 /* ProgressBookCover.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8D4EC0B28F7AA3500470437 /* ProgressBookCover.swift */; };
 		F8D60B7D28F668DF00AE6A52 /* ReadingBookView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8D60B7C28F668DF00AE6A52 /* ReadingBookView.swift */; };
 		F8EF368828EC0182009DADC4 /* SecondaryButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8EF368728EC0182009DADC4 /* SecondaryButtonStyle.swift */; };
@@ -100,10 +96,6 @@
 		F8B4C0FE28F938A90028F85D /* SelectedBookView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectedBookView.swift; sourceTree = "<group>"; };
 		F8B4C10528F946180028F85D /* ReadingProgressViewStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadingProgressViewStyle.swift; sourceTree = "<group>"; };
 		F8D3B23428F4F15400A08107 /* Bookmark.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Bookmark.swift; sourceTree = "<group>"; };
-		F8D4EBFE28F686A200470437 /* ReadingBookViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadingBookViewModel.swift; sourceTree = "<group>"; };
-		F8D4EC0228F78FE200470437 /* UserAPIProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserAPIProtocol.swift; sourceTree = "<group>"; };
-		F8D4EC0628F792D200470437 /* UserAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserAPI.swift; sourceTree = "<group>"; };
-		F8D4EC0828F7A70B00470437 /* NowReadingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NowReadingViewModel.swift; sourceTree = "<group>"; };
 		F8D4EC0B28F7AA3500470437 /* ProgressBookCover.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressBookCover.swift; sourceTree = "<group>"; };
 		F8D60B7C28F668DF00AE6A52 /* ReadingBookView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadingBookView.swift; sourceTree = "<group>"; };
 		F8EF368728EC0182009DADC4 /* SecondaryButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondaryButtonStyle.swift; sourceTree = "<group>"; };
@@ -131,9 +123,7 @@
 				2741A3F528ED804F00D4E14B /* HomeView.swift */,
 				27B2059828F94B3C006A1720 /* BluetoothPairingView.swift */,
 				F8B1EF9028EE79B1000F9071 /* NowReading.swift */,
-				F8D4EC0828F7A70B00470437 /* NowReadingViewModel.swift */,
 				F8D60B7C28F668DF00AE6A52 /* ReadingBookView.swift */,
-				F8D4EBFE28F686A200470437 /* ReadingBookViewModel.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -143,8 +133,6 @@
 			children = (
 				2741A43A28F0F74F00D4E14B /* BookAPIProtocol.swift */,
 				2741A44128F0FACD00D4E14B /* BookAPI.swift */,
-				F8D4EC0228F78FE200470437 /* UserAPIProtocol.swift */,
-				F8D4EC0628F792D200470437 /* UserAPI.swift */,
 				F854A65428FCC85800F64B0A /* SmartLibraryAPIProtocol.swift */,
 				F854A65628FCC98A00F64B0A /* SmartLibraryAPI.swift */,
 				2779980428FCAF420064C750 /* AuthController.swift */,
@@ -359,7 +347,6 @@
 				F894A07628EFD21C00C19693 /* PrimaryButtonStyle.swift in Sources */,
 				279BB12228F26C2B008CD22C /* Utils.swift in Sources */,
 				F8EF368828EC0182009DADC4 /* SecondaryButtonStyle.swift in Sources */,
-				F8D4EC0328F78FE200470437 /* UserAPIProtocol.swift in Sources */,
 				2779980928FD08AE0064C750 /* User.swift in Sources */,
 				279BB11E28F10ECF008CD22C /* BookEdition.swift in Sources */,
 				27B2059528F8ADF2006A1720 /* BluetoothController.swift in Sources */,
@@ -372,7 +359,6 @@
 				F894A07F28F006FF00C19693 /* SelectedBookViewModel.swift in Sources */,
 				F854A65928FCDAF200F64B0A /* ReadingSession.swift in Sources */,
 				F8D4EC0C28F7AA3500470437 /* ProgressBookCover.swift in Sources */,
-				F8D4EBFF28F686A200470437 /* ReadingBookViewModel.swift in Sources */,
 				F8D3B23528F4F15400A08107 /* Bookmark.swift in Sources */,
 				F854A65528FCC85800F64B0A /* SmartLibraryAPIProtocol.swift in Sources */,
 				F814595D28DDA63D00390B65 /* ContentView.swift in Sources */,
@@ -381,7 +367,6 @@
 				F8B4C10628F946180028F85D /* ReadingProgressViewStyle.swift in Sources */,
 				F854A65328FBD5AE00F64B0A /* GoogleBook.swift in Sources */,
 				2741A44228F0FACD00D4E14B /* BookAPI.swift in Sources */,
-				F8D4EC0928F7A70B00470437 /* NowReadingViewModel.swift in Sources */,
 				279BB12028F24CD6008CD22C /* Author.swift in Sources */,
 				F854A65728FCC98A00F64B0A /* SmartLibraryAPI.swift in Sources */,
 				F8B1EF9128EE79B1000F9071 /* NowReading.swift in Sources */,
@@ -395,7 +380,6 @@
 				F8D60B7D28F668DF00AE6A52 /* ReadingBookView.swift in Sources */,
 				2741A43E28F0F7D700D4E14B /* Book.swift in Sources */,
 				F814595B28DDA63D00390B65 /* smart_library_appApp.swift in Sources */,
-				F8D4EC0728F792D200470437 /* UserAPI.swift in Sources */,
 				F894A07928EFFD6000C19693 /* StartReadingSelectedBookView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

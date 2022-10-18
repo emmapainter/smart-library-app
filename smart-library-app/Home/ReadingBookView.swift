@@ -9,10 +9,11 @@ import SwiftUI
 
 struct ReadingBookView: View {
     var book: ReadingBook
+    @EnvironmentObject private var user: User
     
     var body: some View {
         ZStack(alignment: .center) {
-            if let book = book
+            if let book = user.readingBooks.first(where: {$0 == book})
                 {
                 ScrollView {
                     VStack {
@@ -36,6 +37,25 @@ struct ReadingBookView: View {
                                     print("Finish") // TODO: EP - finish
                                 }
                                 .buttonStyle(SecondaryButtonStyle())
+                            }
+                            HStack{
+                                Button("Start Reading") {
+                                    do {
+                                        Task {
+                                            try await user.startReadingSession(readingBook: book)
+                                        }
+                                    }
+                                    
+                                }
+                                
+                                Button("Stop Reading") {
+                                    do {
+                                        Task {
+                                            try await user.stopReadingSession(readingBook: book, pages: 30)
+                                        }
+                                    }
+                                    
+                                }
                             }
                         }
                         .padding()
@@ -70,8 +90,8 @@ struct ReadingBookView: View {
 }
 
 
-struct StartReadingSuccessView_Previews: PreviewProvider {
-    static var previews: some View {
-//        ReadingBookView(book: ReadingBook(book: <#T##BookEdition#>, bookmark: <#T##Bookmark#>))
-    }
-}
+//struct StartReadingSuccessView_Previews: PreviewProvider {
+//    static var previews: some View {
+////        ReadingBookView(book: ReadingBook(book: <#T##BookEdition#>, bookmark: <#T##Bookmark#>))
+//    }
+//}

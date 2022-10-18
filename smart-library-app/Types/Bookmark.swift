@@ -6,9 +6,10 @@
 //
 
 import Foundation
-import CoreNFC
+import FirebaseFirestoreSwift
 
 struct Bookmark: Codable {
+    @DocumentID var id: String?
     var bluetoothIdentifier: String
     var bookISBN13: String
     var currentPageNumber: Int

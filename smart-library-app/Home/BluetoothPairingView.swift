@@ -10,9 +10,10 @@ import CodeScanner
 
 struct BluetoothPairingView: View, BluetoothControllerDelegate {
     @State var btId: String
+    @State var bookIsbn: String
     @State var bookmarkConnected = false
     @State var bookmarkUUID: UUID?
-    
+    @EnvironmentObject private var user: User
     
     var body: some View {
         VStack {
@@ -41,5 +42,6 @@ struct BluetoothPairingView: View, BluetoothControllerDelegate {
         print("connected to \(deviceUUID)")
         bookmarkUUID = deviceUUID
         bookmarkConnected = true
+        user.addBookmark(bluetoothIdentifier: btId, bookISBN13: bookIsbn, currentPageNumber: 0)
     }
 }

@@ -7,17 +7,20 @@
 
 import Foundation
 
-struct SmartLibraryAPI: SmartLibraryAPIProtocol, UserAPIProtocol, BookAPIProtocol {
+struct SmartLibraryAPI: SmartLibraryAPIProtocol, BookAPIProtocol {
     
+    let db = DatabaseController()
     let bookAPI = BookAPI()
-    let userAPI = UserAPI()
     
     // MARK: SmartLibraryAPIProtocol methods
     func getCurrentBooks(bookmarks: [Bookmark]) async throws -> [ReadingBook] {
         var books = [ReadingBook]()
         do {
             for bookmark in bookmarks {
-                books.append(try await self.getBookForBookmark(bookmark: bookmark))
+                var book = try await self.getBookForBookmark(bookmark: bookmark)
+                let sessions = try await db.getReadingSessionsFor(book: bookmark.bookISBN13)
+                book.setReadingSessions(readingSessions: sessions)
+                books.append(book)
             }
             return books
         } catch let error{
@@ -37,17 +40,12 @@ struct SmartLibraryAPI: SmartLibraryAPIProtocol, UserAPIProtocol, BookAPIProtoco
         return try await bookAPI.searchBooks(searchQuery: searchQuery)
     }
     
-    // MARK: UserAPIProtocol methods
     func getBookmarks() async throws -> [Bookmark] {
-        return try await userAPI.getBookmarks()
-    }
-    
-    func getBookmarkWith(id bluetoothId: String) async throws -> Bookmark {
-        return try await userAPI.getBookmarkWith(id: bluetoothId)
+        return try await db.getBookmarks()
     }
     
     func getReadingSessionsFor(book isbn13: String) async throws -> [ReadingSession] {
-        return try await userAPI.getReadingSessionsFor(book: isbn13)
+        return try await db.getReadingSessionsFor(book: isbn13)
     }
     
     // MARK: BookAPIProtocol methods

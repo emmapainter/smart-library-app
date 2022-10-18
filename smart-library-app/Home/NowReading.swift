@@ -11,7 +11,6 @@ import CodeScanner
 struct NowReading: View {
     @State var isShowingSheet = false
     @Binding var rootNavigationPath: NavigationPath
-//    @StateObject var viewModel = NowReadingViewModel()
     @EnvironmentObject private var user: User
     
     var body: some View {

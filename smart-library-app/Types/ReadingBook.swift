@@ -22,6 +22,10 @@ struct ReadingBook: Hashable {
     var bookmark: Bookmark
     var sessions = [ReadingSession]()
     
+    mutating func setReadingSessions(readingSessions: [ReadingSession]) {
+        self.sessions = readingSessions
+    }
+    
     func getTotalHoursReading() -> Int {
         return getTotalMinutesReading() / 60
     }
