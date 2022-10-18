@@ -13,17 +13,17 @@ import SwiftUI
     let libraryAPI = SmartLibraryAPI()
     @Published var readingBooks: [ReadingBook]?
     
-    func getBooks() {
-        Task {
-            do {
-                try await self.getCurrentBooks()
-            } catch let error {
-                print(error.localizedDescription) // TODO: EP - Error handling
-            }
-        }
-    }
-    
-    private func getCurrentBooks() async throws {
-        readingBooks = try await libraryAPI.getCurrentBooks()
-    }
+//    func getBooks() {
+//        Task {
+//            do {
+//                try await self.getCurrentBooks()
+//            } catch let error {
+//                print(error.localizedDescription) // TODO: EP - Error handling
+//            }
+//        }
+//    }
+//    
+//    private func getCurrentBooks() async throws {
+//        readingBooks = try await libraryAPI.getCurrentBooks()
+//    }
 }

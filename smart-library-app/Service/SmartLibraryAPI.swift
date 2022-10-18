@@ -13,12 +13,11 @@ struct SmartLibraryAPI: SmartLibraryAPIProtocol, UserAPIProtocol, BookAPIProtoco
     let userAPI = UserAPI()
     
     // MARK: SmartLibraryAPIProtocol methods
-    func getCurrentBooks() async throws -> [ReadingBook] {
+    func getCurrentBooks(bookmarks: [Bookmark]) async throws -> [ReadingBook] {
         var books = [ReadingBook]()
         do {
-            let bookmarks = try await userAPI.getBookmarks()
             for bookmark in bookmarks {
-                books.append(try await self.getBookForBookmarkWith(id: bookmark.bluetoothIdentifier))
+                books.append(try await self.getBookForBookmark(bookmark: bookmark))
             }
             return books
         } catch let error{
@@ -28,10 +27,9 @@ struct SmartLibraryAPI: SmartLibraryAPIProtocol, UserAPIProtocol, BookAPIProtoco
         return [ReadingBook]()
     }
     
-    func getBookForBookmarkWith(id bluetoothId: String) async throws -> ReadingBook {
-        let bookmark = try await userAPI.getBookmarkWith(id: bluetoothId)
+    func getBookForBookmark(bookmark: Bookmark) async throws -> ReadingBook {
         let book = try await bookAPI.getBookEdition(isbn13: bookmark.bookISBN13)
-        let sessions = try await userAPI.getReadingSessionsFor(book: bookmark.bookISBN13)
+        let sessions = [ReadingSession]()
         return ReadingBook(book: book, bookmark: bookmark, sessions: sessions)
     }
     

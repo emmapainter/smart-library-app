@@ -8,7 +8,7 @@
 import Foundation
 
 protocol SmartLibraryAPIProtocol {
-    func getCurrentBooks() async throws -> [ReadingBook]
-    func getBookForBookmarkWith(id bluetoothId: String) async throws -> ReadingBook
+    func getCurrentBooks(bookmarks: [Bookmark]) async throws -> [ReadingBook]
+    func getBookForBookmark(bookmark: Bookmark) async throws -> ReadingBook
     func searchAllBooks(for searchQuery: String) async throws -> [Book]
 }

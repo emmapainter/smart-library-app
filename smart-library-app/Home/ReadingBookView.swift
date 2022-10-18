@@ -8,13 +8,12 @@
 import SwiftUI
 
 struct ReadingBookView: View {
-    var bookmarkBtId: String?
-    var book: ReadingBook?
-    @StateObject var viewModel = ReadingBookViewModel()
+    var book: ReadingBook
     
     var body: some View {
         ZStack(alignment: .center) {
-            if let book = viewModel.book {
+            if let book = book
+                {
                 ScrollView {
                     VStack {
                         VStack {
@@ -54,13 +53,6 @@ struct ReadingBookView: View {
                 .background(Color(red: 242/255, green: 241/255, blue: 246/255))
             } else {
                 ProgressView()
-                    .onAppear {
-                        if let bookmarkBtId = bookmarkBtId {
-                            viewModel.getBook(bookmarkBtId: bookmarkBtId)
-                        } else {
-                            viewModel.book = book
-                        }
-                    }
             }
         }
         .toolbar {
@@ -73,11 +65,13 @@ struct ReadingBookView: View {
             
         }
     }
+
+    
 }
 
 
 struct StartReadingSuccessView_Previews: PreviewProvider {
     static var previews: some View {
-        ReadingBookView(bookmarkBtId: "1234")
+//        ReadingBookView(book: ReadingBook(book: <#T##BookEdition#>, bookmark: <#T##Bookmark#>))
     }
 }

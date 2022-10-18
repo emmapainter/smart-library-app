@@ -12,12 +12,15 @@ class User: ObservableObject {
     @Published var bookmarks = [Bookmark]()
     @Published var readingBooks = [ReadingBook]()
     private let smartLibrary = SmartLibraryAPI()
+    private let db = DatabaseController()
     
     init() {
         Task { @MainActor in
             do {
                 self.bookmarks = try await self.smartLibrary.getBookmarks()
-                self.readingBooks = try await self.smartLibrary.getCurrentBooks()
+//                print(self.bookmarks)
+                self.readingBooks = try await self.smartLibrary.getCurrentBooks(bookmarks: self.bookmarks)
+//                print(self.readingBooks)
             } catch let error {
                 print(error)
             }
@@ -28,7 +31,7 @@ class User: ObservableObject {
         let newBookmark = Bookmark(bluetoothIdentifier: bluetoothIdentifier, bookISBN13: bookISBN13, currentPageNumber: currentPageNumber)
         Task {
             do {
-//                try await db.addBookmark(bookmark: newBookmark)
+                try await db.addBookmark(bookmark: newBookmark)
                 bookmarks.append(newBookmark)
 
                 let book = try await getBookForBookmark(bookmark: newBookmark)

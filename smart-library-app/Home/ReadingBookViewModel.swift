@@ -12,17 +12,17 @@ import UIKit
     @Published var book: ReadingBook?
     let libraryAPI = SmartLibraryAPI()
     
-    func getBook(bookmarkBtId: String) {
-        Task {
-            do {
-                try await self.getBookAsync(bookmarkBtId: bookmarkBtId)
-            } catch {
-                // TODO: EP - Error handling
-            }
-        }
-    }
-    
-    private func getBookAsync(bookmarkBtId: String) async throws {
-        book = try await libraryAPI.getBookForBookmarkWith(id: bookmarkBtId)
-    }
+//    func getBook(bookmarkBtId: String) {
+//        Task {
+//            do {
+//                try await self.getBookAsync(bookmarkBtId: bookmarkBtId)
+//            } catch {
+//                // TODO: EP - Error handling
+//            }
+//        }
+//    }
+//    
+//    private func getBookAsync(bookmarkBtId: String) async throws {
+//        book = try await libraryAPI.getBookForBookmarkWith(id: bookmarkBtId)
+//    }
 }
