@@ -17,9 +17,10 @@ struct SearchView: View {
     
     func search(for text:  String) {
         switch searchType {
-        case searchTypes[0]:
+        case "My Books":
+            // TODO: EP - search library
             break
-        case searchTypes[1]:
+        case "All Books":
             Task {
                 do {
                     bookSearchResults = try await libraryAPI.searchBooks(searchQuery: text)
@@ -29,7 +30,7 @@ struct SearchView: View {
                 
             }
             break
-        case searchTypes[2]: break
+        case searchTypes[2]: break // TODO: EP - Are we implementing users?
         default:
             break
         }
