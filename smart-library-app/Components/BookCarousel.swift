@@ -13,20 +13,24 @@ struct BookCarousel: View {
         ScrollView(.horizontal) {
             HStack {
                 ForEach(books) { book in
-                    VStack {
-                        AsyncImage(
-                            url: book.getImageUrl(size: .large),
-                            content: { image in
-                                image.resizable()
-                                    .frame(width: 150, height: 240)
-                                    .aspectRatio(contentMode: .fit)
-                                    .cornerRadius(10)
-                            },
-                            placeholder: {
-                                ProgressView()
-                            }
-                        )
-                        Text(book.title)
+                    NavigationLink {
+                        SelectedBookView(isbn: book.isbn13)
+                    } label: {
+                        VStack {
+                            AsyncImage(
+                                url: book.getImageUrl(size: .large),
+                                content: { image in
+                                    image.resizable()
+                                        .frame(width: 150, height: 240)
+                                        .aspectRatio(contentMode: .fit)
+                                        .cornerRadius(10)
+                                },
+                                placeholder: {
+                                    ProgressView()
+                                }
+                            )
+                            Text(book.title)
+                        }
                     }
                 }
             }
