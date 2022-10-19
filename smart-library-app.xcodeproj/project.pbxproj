@@ -17,6 +17,7 @@
 		27455CEF28FC1138005781AA /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 27455CEE28FC1138005781AA /* FirebaseFirestore */; };
 		27455CF128FC1138005781AA /* FirebaseFirestoreSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 27455CF028FC1138005781AA /* FirebaseFirestoreSwift */; };
 		27455CF528FC17C1005781AA /* SignInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27455CF428FC17C1005781AA /* SignInView.swift */; };
+		275DE8BA28FFECCE003030D2 /* MainTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 275DE8B928FFECCE003030D2 /* MainTabView.swift */; };
 		2779980528FCAF420064C750 /* AuthController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2779980428FCAF420064C750 /* AuthController.swift */; };
 		2779980728FCE0580064C750 /* DatabaseController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2779980628FCE0580064C750 /* DatabaseController.swift */; };
 		2779980928FD08AE0064C750 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2779980828FD08AE0064C750 /* User.swift */; };
@@ -61,6 +62,7 @@
 		2741A44128F0FACD00D4E14B /* BookAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookAPI.swift; sourceTree = "<group>"; };
 		27455CE928FC0ED5005781AA /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		27455CF428FC17C1005781AA /* SignInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInView.swift; sourceTree = "<group>"; };
+		275DE8B928FFECCE003030D2 /* MainTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabView.swift; sourceTree = "<group>"; };
 		2779980428FCAF420064C750 /* AuthController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthController.swift; sourceTree = "<group>"; };
 		2779980628FCE0580064C750 /* DatabaseController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseController.swift; sourceTree = "<group>"; };
 		2779980828FD08AE0064C750 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
@@ -179,6 +181,7 @@
 				F895D6BE28E95D950042A38C /* Search */,
 				27455CF328FC178B005781AA /* SignIn */,
 				F814595A28DDA63D00390B65 /* smart_library_appApp.swift */,
+				275DE8B928FFECCE003030D2 /* MainTabView.swift */,
 				279BB12128F26C2B008CD22C /* Utils.swift */,
 				F814595C28DDA63D00390B65 /* ContentView.swift */,
 				27B2059428F8ADF2006A1720 /* BluetoothController.swift */,
@@ -371,6 +374,7 @@
 				F854A65728FCC98A00F64B0A /* SmartLibraryAPI.swift in Sources */,
 				F8B1EF9128EE79B1000F9071 /* NowReading.swift in Sources */,
 				F894A07428EFB4C700C19693 /* StartReadingChooseBookView.swift in Sources */,
+				275DE8BA28FFECCE003030D2 /* MainTabView.swift in Sources */,
 				F854A65B28FCDCD100F64B0A /* PagesPerDayChart.swift in Sources */,
 				2741A3F628ED804F00D4E14B /* HomeView.swift in Sources */,
 				F854A65D28FCE8C700F64B0A /* MinutesPerDayChart.swift in Sources */,

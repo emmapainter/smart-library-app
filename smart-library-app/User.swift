@@ -9,19 +9,20 @@ import Foundation
 
 @MainActor
 class User: ObservableObject {
+    @Published var loggedIn = false
     @Published var bookmarks = [Bookmark]()
     @Published var readingBooks = [ReadingBook]()
     private let smartLibrary = SmartLibraryAPI()
     private let db = DatabaseController()
     
     init() {
-        Task { @MainActor in
-            do {
-                try await fetchUserData()
-            } catch let error {
-                print(error)
-            }
-        }
+//        Task { @MainActor in
+//            do {
+//                try await fetchUserData()
+//            } catch let error {
+//                print(error)
+//            }
+//        }
     }
     
     func fetchUserData() async throws {
@@ -102,6 +103,10 @@ class User: ObservableObject {
     func connectBookmarks(bookmark: Bookmark) {
         print("connecting")
         BluetoothController.shared.startScanning(btDeviceUuid: UUID(uuidString: bookmark.bluetoothIdentifier))
+    }
+    
+    func getReadingBookFromBookmarkId(bookmarkId: String) -> ReadingBook? {
+        return readingBooks.first(where: {$0.bookmark.bluetoothIdentifier == bookmarkId})
     }
 }
 

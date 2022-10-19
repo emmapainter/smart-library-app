@@ -11,16 +11,17 @@ import AuthenticationServices
 
 struct SignInView: View {
     let authController = AuthController()
-    @State var user = Auth.auth().currentUser
+    @State var firebaseUser = Auth.auth().currentUser
+    @EnvironmentObject private var user: User
        
     var body: some View {
-        if let user = user {
+        if let user = firebaseUser {
             VStack{
                 Text(user.uid)
                 Button(action: {
                     do {
                         try Auth.auth().signOut()
-                        self.user = nil
+                        self.firebaseUser = nil
                     } catch let error {
                         print(error)
                     }
@@ -34,7 +35,8 @@ struct SignInView: View {
                 onCompletion: { result in
                     Task {
                         do {
-                            try await self.user = authController.completeSignInWithApple(result: result)?.user
+                            try await self.firebaseUser = authController.completeSignInWithApple(result: result)?.user
+                            self.user.loggedIn = true
                         } catch let error {
                             print(error)
                         }
