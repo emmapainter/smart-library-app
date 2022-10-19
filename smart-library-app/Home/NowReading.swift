@@ -48,7 +48,9 @@ struct NowReading: View {
                             .frame(width: 150)
                         }
                     } else {
+                        Spacer()
                         ProgressView()
+                        Spacer()
                     }
                 }
                 .frame(height: 300)

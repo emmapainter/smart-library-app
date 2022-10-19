@@ -30,7 +30,9 @@ struct LibraryView: View {
                     Text("Unread")
                     BookCarousel(books: books)
                 }
+                Spacer()
             }
+            .padding(16)
             .navigationTitle("Library")
         }
     }
