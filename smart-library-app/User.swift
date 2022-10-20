@@ -7,6 +7,8 @@
 
 import Foundation
 
+extension String: Error {}
+
 @MainActor
 class User: ObservableObject {
     @Published var loggedIn = false
@@ -15,15 +17,7 @@ class User: ObservableObject {
     private let smartLibrary = SmartLibraryAPI()
     private let db = DatabaseController()
     
-    init() {
-//        Task { @MainActor in
-//            do {
-//                try await fetchUserData()
-//            } catch let error {
-//                print(error)
-//            }
-//        }
-    }
+    init() {}
     
     func fetchUserData() async throws {
         self.bookmarks = try await self.smartLibrary.getBookmarks()
@@ -48,6 +42,11 @@ class User: ObservableObject {
     }
     
     func startReadingSession(readingBook: ReadingBook) async throws {
+        
+        if let _ = try await db.getInProgressReadingSession(bookmark: readingBook.bookmark) {
+            throw "Can't start a new session when there is already an active session"
+        }
+        
         var newReadingSession = ReadingSession(startTime: Date.now, bookISBN13: readingBook.bookmark.bookISBN13, bookmarkId: readingBook.bookmark.bluetoothIdentifier, inProgress: true)
         let readingBookIndex = readingBooks.firstIndex(of: readingBook)
         
@@ -62,7 +61,30 @@ class User: ObservableObject {
         readingBooks[readingBookIndex].sessions.append(newReadingSession)
     }
     
-    func stopReadingSession(readingBook: ReadingBook, pages: Int) async throws {
+    func stopReadingSession(readingBook: ReadingBook) async throws {
+        guard var currentReadingSession = try await db.getInProgressReadingSession(bookmark: readingBook.bookmark) else {
+            print("Tried to end a reading session when no current session existed")
+            return
+        }
+                
+        currentReadingSession.endTime = Date.now
+        
+        // update bookmark and readingSession in user object
+        guard let readingBookIndex = readingBooks.firstIndex(of: readingBook) else {
+            print("tried to add a reading session to a book not available in user")
+            return
+        }
+        
+        guard let sessionIndex = readingBooks[readingBookIndex].sessions.firstIndex(where: {$0.id == currentReadingSession.id}) else {
+            print("tried to add a reading session to a book not available in user")
+            return
+        }
+        
+        readingBooks[readingBookIndex].sessions[sessionIndex] = currentReadingSession
+        try db.updateReadingSession(session: currentReadingSession)
+    }
+    
+    func setPageNumbers(readingBook: ReadingBook, pages: Int) async throws {
         let currentReadingSession = try await db.getInProgressReadingSession(bookmark: readingBook.bookmark)
         
         guard var currentReadingSession = currentReadingSession else {
@@ -70,7 +92,6 @@ class User: ObservableObject {
             return
         }
                 
-        currentReadingSession.endTime = Date.now
         currentReadingSession.numberOfPages = pages
         currentReadingSession.inProgress = false
         
@@ -109,4 +130,5 @@ class User: ObservableObject {
         return readingBooks.first(where: {$0.bookmark.bluetoothIdentifier == bookmarkId})
     }
 }
+
 

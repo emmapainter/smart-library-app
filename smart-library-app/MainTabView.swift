@@ -25,7 +25,8 @@ struct MainTabView: View, BluetoothControllerDelegate {
                 Task {
                     do {
                         print(pageNumber)
-                        try await user.stopReadingSession(readingBook: readingBook, pages: 10)
+                        try await user.setPageNumbers(readingBook: readingBook, pages: pageNumber)
+                        
                     } catch let error {
                         print(error)
                     }
@@ -59,7 +60,7 @@ struct MainTabView: View, BluetoothControllerDelegate {
         }
     }
     
-    @MainActor mutating func bluetoothDeviceDidSendData(deviceUUID: UUID, data: String) {
+    @MainActor func bluetoothDeviceDidSendData(deviceUUID: UUID, data: String) {
         print("Device: \(deviceUUID.description)")
         print("Data: \(data)")
         
@@ -80,8 +81,15 @@ struct MainTabView: View, BluetoothControllerDelegate {
         
         if data == "0" {
             print("Stoped reading")
-            self.deviceUUID = deviceUUID
-            showingPageAlert = true
+            Task {
+                do {
+                    try await user.stopReadingSession(readingBook: readingBook)
+                    showingPageAlert = true
+                } catch let error {
+                    print(error)
+                }
+            }
+            
         }
     }
 }
