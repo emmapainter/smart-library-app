@@ -25,25 +25,21 @@ struct ReadingBook: Hashable {
     mutating func setReadingSessions(readingSessions: [ReadingSession]) {
         self.sessions = readingSessions
     }
-    
-    func getTotalHoursReading() -> Int {
-        return getTotalMinutesReading() / 60
-    }
-    
+
     func getTotalMinutesReading() -> Int {
-        var time = 0
+        var time: Double = 0
         for session in sessions {
             if let minutes = session.getTimeReading() {
                 time += minutes
             }
         }
-        return time
+        return Int(time)
     }
     
     func getPagesPerHour() -> Int {
-        let totalHoursReading = getTotalHoursReading()
-        if (totalHoursReading == 0) { return 0 }
-        return bookmark.currentPageNumber / totalHoursReading
+        let totalMinutesReading = getTotalMinutesReading()
+        if totalMinutesReading == 0 { return 0 }
+        return bookmark.currentPageNumber / (totalMinutesReading / 60)
     }
     
     func getAverageMinutesPerDay() -> Int {
@@ -54,7 +50,7 @@ struct ReadingBook: Hashable {
     
     func getNumberOfDaysSinceStartedReading() -> Int {
         if (sessions.count == 0) { return 0 }
-        return Calendar.current.dateComponents([.day], from: sessions[0].startTime, to: Date.now).day!
+        return Calendar.current.dateComponents([.day], from: sessions[0].startTime, to: Date.now).day! + 2
     }
     
     func getPagesPerDay() -> Int {

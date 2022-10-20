@@ -26,7 +26,7 @@ class DatabaseController {
     func getReadingSessionsFor(book isbn13: String) async throws -> [ReadingSession] {
         guard let userId = Auth.auth().currentUser?.uid else { fatalError("No user is authenticated") }
         
-        let sessionsSnapshot = try await db.collection("users").document("/\(userId)").collection("sessions").whereField("bookISBN13", isEqualTo: isbn13).order(by: "startTime", descending: true).getDocuments()
+        let sessionsSnapshot = try await db.collection("users").document("/\(userId)").collection("sessions").whereField("bookISBN13", isEqualTo: isbn13).order(by: "startTime", descending: false).getDocuments()
         let sessions = try sessionsSnapshot.documents.map {try $0.data(as: ReadingSession.self)}
         
         return sessions
