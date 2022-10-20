@@ -17,12 +17,12 @@ struct ReadingSession: Codable, Identifiable {
     var bookmarkId: String
     var inProgress: Bool
     
-    func getTimeReading() -> Int? {
+    func getTimeReading() -> Double? {
         guard let endTime = endTime else {
             return nil
         }
         
-        let diffSeconds = Int(endTime.timeIntervalSince1970 - startTime.timeIntervalSince1970)
+        let diffSeconds = endTime.timeIntervalSince1970 - startTime.timeIntervalSince1970
         return diffSeconds / 60
     }
 }

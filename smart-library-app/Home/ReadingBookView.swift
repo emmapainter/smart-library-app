@@ -67,6 +67,8 @@ struct ReadingBookView: View {
                         ReadingDataCell(title: "Daily reading average", value: String(book.getPagesPerDay()), units: "pages per day")
                         ReadingDataCell(title: "Session reading average", value: String(book.getAveragePagesPerSession()), units: "pages per session")
                         ReadingDataCell(title: "Session reading average", value: String(book.getAverageMinutesPerSession()), units: "minutes per session")
+                        ReadingDataCell(title: "Total time reading", value: String(book.getTotalMinutesReading()), units: "minutes")
+                        ReadingDataCell(title: "Total pages read", value: String(book.bookmark.currentPageNumber), units: "pages")
                     }
                     .padding(16)
                 }
