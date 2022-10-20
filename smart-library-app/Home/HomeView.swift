@@ -8,17 +8,27 @@
 import SwiftUI
 import CodeScanner
 
+struct HomeViewNavigationPath: Hashable {
+    let btId: String
+    let bookIsbn: String
+}
+
 struct HomeView: View {
     @State var navigationPath = NavigationPath()
+    @EnvironmentObject private var user: User
+    
     var body: some View {
         NavigationStack(path: $navigationPath) {
             VStack {
                 NowReading(rootNavigationPath: $navigationPath)
                 Spacer()
+                Button("Add book") {
+                    user.addBookmark(bluetoothIdentifier: "12345", bookISBN13: "9781783789146", currentPageNumber: 10)
+                }
             }
             .padding(16)
             .navigationTitle("Home")
-            .navigationDestination(for: String.self, destination: { btId in  BluetoothPairingView(btId: btId)
+            .navigationDestination(for: HomeViewNavigationPath.self, destination: { navPath in BluetoothPairingView(btId: navPath.btId, bookIsbn: navPath.bookIsbn)
             })
         }
     }

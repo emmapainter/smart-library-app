@@ -11,8 +11,8 @@ import CodeScanner
 struct NowReading: View {
     @State var isShowingSheet = false
     @Binding var rootNavigationPath: NavigationPath
-    @StateObject var viewModel = NowReadingViewModel()
-   
+    @EnvironmentObject private var user: User
+    
     var body: some View {
         VStack {
             HStack {
@@ -33,34 +33,25 @@ struct NowReading: View {
             .buttonStyle(SecondaryButtonStyle())
             ScrollView(.horizontal) {
                 HStack {
-                    if let books = viewModel.readingBooks {
-                        ForEach(books, id: \.self) { book in
-                            NavigationLink {
-                                ReadingBookView(book: book)
-                            } label: {
-                                VStack {
-                                    ProgressBookCover(readingBook: book)
-                                    Text(book.book.title)
-                                        .foregroundColor(.black)
-                                        .lineLimit(1)
-                                }
+                    ForEach(user.readingBooks, id: \.book.isbn13) { book in
+                        NavigationLink {
+                            ReadingBookView(book: book)
+                        } label: {
+                            VStack {
+                                ProgressBookCover(readingBook: book)
+                                Text(book.book.title)
+                                    .foregroundColor(.black)
+                                    .lineLimit(1)
                             }
-                            .frame(width: 150)
                         }
-                    } else {
-                        ProgressView()
+                        .frame(width: 150)
                     }
                 }
-                .frame(height: 300)
             }
+            .frame(height: 300)
         }
         .sheet(isPresented: $isShowingSheet) {
             StartReadingChooseBookView(isShowingSheet: $isShowingSheet, rootNavigationPath: $rootNavigationPath)
         }
-        .onAppear(perform: {
-            viewModel.getBooks()
-        })
     }
-    
-    
 }

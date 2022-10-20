@@ -8,13 +8,13 @@
 import SwiftUI
 
 struct ReadingBookView: View {
-    var bookmarkBtId: String?
-    var book: ReadingBook?
-    @StateObject var viewModel = ReadingBookViewModel()
+    var book: ReadingBook
+    @EnvironmentObject private var user: User
     
     var body: some View {
         ZStack(alignment: .center) {
-            if let book = viewModel.book {
+            if let book = user.readingBooks.first(where: {$0 == book})
+                {
                 ScrollView {
                     VStack {
                         VStack {
@@ -38,6 +38,25 @@ struct ReadingBookView: View {
                                 }
                                 .buttonStyle(SecondaryButtonStyle())
                             }
+                            HStack{
+                                Button("Start Reading") {
+                                    do {
+                                        Task {
+                                            try await user.startReadingSession(readingBook: book)
+                                        }
+                                    }
+                                    
+                                }
+                                
+                                Button("Stop Reading") {
+                                    do {
+                                        Task {
+                                            try await user.stopReadingSession(readingBook: book, pages: 30)
+                                        }
+                                    }
+                                    
+                                }
+                            }
                         }
                         .padding()
                         .background(Color.white)
@@ -54,13 +73,6 @@ struct ReadingBookView: View {
                 .background(Color(red: 242/255, green: 241/255, blue: 246/255))
             } else {
                 ProgressView()
-                    .onAppear {
-                        if let bookmarkBtId = bookmarkBtId {
-                            viewModel.getBook(bookmarkBtId: bookmarkBtId)
-                        } else {
-                            viewModel.book = book
-                        }
-                    }
             }
         }
         .toolbar {
@@ -73,11 +85,13 @@ struct ReadingBookView: View {
             
         }
     }
+
+    
 }
 
 
-struct StartReadingSuccessView_Previews: PreviewProvider {
-    static var previews: some View {
-        ReadingBookView(bookmarkBtId: "1234")
-    }
-}
+//struct StartReadingSuccessView_Previews: PreviewProvider {
+//    static var previews: some View {
+////        ReadingBookView(book: ReadingBook(book: <#T##BookEdition#>, bookmark: <#T##Bookmark#>))
+//    }
+//}

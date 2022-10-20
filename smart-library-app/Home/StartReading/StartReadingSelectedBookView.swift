@@ -33,9 +33,9 @@ struct StartReadingSelectedBookView: View {
                         Text("Near field communication is required to scan your bookmark, please enable NFC permissions in your settings.")
                     }
                     .onChange(of: viewModel.hasScannedBookmark) { newValue in
-                        if newValue {
+                        if newValue  && viewModel.book != nil {
                             isShowingSheet = false
-                            rootNavigationPath.append(viewModel.nfcMessage)
+                            rootNavigationPath.append(HomeViewNavigationPath(btId: viewModel.nfcMessage , bookIsbn: viewModel.book!.isbn13 ?? ""))
                         }
                     }
                 } else {

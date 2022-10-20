@@ -6,14 +6,16 @@
 //
 
 import Foundation
+import FirebaseFirestoreSwift
 
-struct ReadingSession: Identifiable {
-    var id = UUID()
+struct ReadingSession: Codable, Identifiable {
+    @DocumentID var id: String?
     var startTime: Date
     var endTime: Date?
     var numberOfPages: Int?
     var bookISBN13: String
     var bookmarkId: String
+    var inProgress: Bool
     
     func getTimeReading() -> Int? {
         guard let endTime = endTime else {

@@ -6,10 +6,16 @@
 //
 
 import SwiftUI
+import Firebase
+import FirebaseAuth
 
 @main
 struct smart_library_appApp: App, BluetoothControllerDelegate {
     
+    var user: User
+    @State var showingPageAlert = true
+    @State var pageNumber: Int?
+
     init(){
         let appearance = UITabBarAppearance()
         appearance.configureWithOpaqueBackground()
@@ -17,32 +23,69 @@ struct smart_library_appApp: App, BluetoothControllerDelegate {
             UITabBar.appearance().scrollEdgeAppearance = appearance
         }
         
+        FirebaseApp.configure()
+        self.user = User()
+        
         // Start bluetooth paring when app opens
-        let _ = BluetoothController.shared
         BluetoothController.shared.addDelegate(delegate: self)
+        let _ = BluetoothController.shared
+        
+        if Auth.auth().currentUser != nil {
+            user.loggedIn = true
+        }
     }
     
     var body: some Scene {
+        
         WindowGroup {
-            TabView {
-                HomeView()
-                    .tabItem {
-                        Label("Home", systemImage: "house")
-                    }
-                ContentView()
-                    .tabItem {
-                        Label("Bookshelf", systemImage: "books.vertical")
-                    }
-                SearchView()
-                    .tabItem {
-                        Label("Search", systemImage: "magnifyingglass")
-                    }
+//            ContentView().alert("Important message", isPresented: $showingPageAlert) {
+//                Button("OK", role: .cancel) {
+//                }
+//            }
+            
+            if user.loggedIn {
+                MainTabView()
+                .environmentObject(self.user)
+            } else {
+                SignInView()
+                .environmentObject(self.user)
             }
         }
     }
     
-    func bluetoothDeviceDidSendData(deviceUUID: UUID, data: String) {
+    func showAlert() {
+        self.showingPageAlert = true
+    }
+    
+    @MainActor func bluetoothDeviceDidSendData(deviceUUID: UUID, data: String) {
         print("Device: \(deviceUUID.description)")
         print("Data: \(data)")
+        
+        guard let readingBook = user.getReadingBookFromBookmarkId(bookmarkId: deviceUUID.uuidString) else {
+            Swift.print("Tried to update reading session for a book")
+            return
+        }
+        
+        if data == "1" {
+            Task {
+                do {
+                    try await user.startReadingSession(readingBook: readingBook)
+                } catch let error {
+                    print(error)
+                }
+            }
+        }
+        
+        if data == "0" {
+            print("Stoped reading")
+            showAlert()
+            Task {
+                do {
+                    try await user.stopReadingSession(readingBook: readingBook, pages: 10)
+                } catch let error {
+                    print(error)
+                }
+            }
+        }
     }
 }
