@@ -39,7 +39,7 @@ struct ReadingBook: Hashable {
     func getPagesPerHour() -> Int {
         let totalMinutesReading = getTotalMinutesReading()
         if totalMinutesReading == 0 { return 0 }
-        return bookmark.currentPageNumber / totalMinutesReading * 60
+        return bookmark.currentPageNumber / (totalMinutesReading / 60)
     }
     
     func getAverageMinutesPerDay() -> Int {
