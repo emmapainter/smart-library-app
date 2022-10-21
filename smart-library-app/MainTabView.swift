@@ -11,10 +11,10 @@ struct MainTabView: View, BluetoothControllerDelegate {
     @EnvironmentObject private var user: User
     @State var showingPageAlert = false
     @State var pageNumber = ""
-    var deviceUUID: UUID?
+    @State var deviceUUID: UUID?
     
     var body: some View {
-        ContentView().alert("Important message", isPresented: $showingPageAlert) {
+        ContentView().alert("Update your page number", isPresented: $showingPageAlert) {
             TextField("Enter your page number", text: $pageNumber)
             Button("OK", role: .cancel) {
                 guard let deviceUUID = deviceUUID, let readingBook = user.getReadingBookFromBookmarkId(bookmarkId: deviceUUID.uuidString) else {
@@ -22,10 +22,15 @@ struct MainTabView: View, BluetoothControllerDelegate {
                     return
                 }
                 
+                guard let pageNumber = Int(pageNumber) else {return}
+                
+                let currentPage = readingBook.bookmark.currentPageNumber
+                let numberOfPagesRead = pageNumber - currentPage
+                
+                
                 Task {
                     do {
-                        print(pageNumber)
-                        try await user.setPageNumbers(readingBook: readingBook, pages: pageNumber)
+                        try await user.setPageNumbers(readingBook: readingBook, pages: max(numberOfPagesRead, 0))
                         
                     } catch let error {
                         print(error)
@@ -83,8 +88,10 @@ struct MainTabView: View, BluetoothControllerDelegate {
             print("Stoped reading")
             Task {
                 do {
-                    try await user.stopReadingSession(readingBook: readingBook)
-                    showingPageAlert = true
+                    if (try await user.stopReadingSession(readingBook: readingBook)) {
+                        self.deviceUUID = deviceUUID
+                        self.showingPageAlert = true
+                    }
                 } catch let error {
                     print(error)
                 }

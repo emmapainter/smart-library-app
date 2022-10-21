@@ -28,35 +28,6 @@ struct ReadingBookView: View {
                                 .font(.title2)
                                 .multilineTextAlignment(.center)
                                 .padding(.top, 3.0)
-                            HStack {
-                                Button("Update page") {
-                                    print("Update page") // TODO: EP - update page
-                                }
-                                .buttonStyle(SecondaryButtonStyle())
-                                Button("Finish") {
-                                    print("Finish") // TODO: EP - finish
-                                }
-                                .buttonStyle(SecondaryButtonStyle())
-                            }
-                            HStack{
-                                Button("Start Reading") {
-                                    do {
-                                        Task {
-                                            try await user.startReadingSession(readingBook: book)
-                                        }
-                                    }
-                                    
-                                }
-                                
-                                Button("Stop Reading") {
-                                    do {
-                                        Task {
-                                            try await user.stopReadingSession(readingBook: book, pages: 30)
-                                        }
-                                    }
-                                    
-                                }
-                            }
                         }
                         .padding()
                         .background(Color.white)

@@ -61,10 +61,10 @@ class User: ObservableObject {
         readingBooks[readingBookIndex].sessions.append(newReadingSession)
     }
     
-    func stopReadingSession(readingBook: ReadingBook) async throws {
+    func stopReadingSession(readingBook: ReadingBook) async throws -> Bool {
         guard var currentReadingSession = try await db.getInProgressReadingSession(bookmark: readingBook.bookmark) else {
             print("Tried to end a reading session when no current session existed")
-            return
+            return false
         }
                 
         currentReadingSession.endTime = Date.now
@@ -72,16 +72,18 @@ class User: ObservableObject {
         // update bookmark and readingSession in user object
         guard let readingBookIndex = readingBooks.firstIndex(of: readingBook) else {
             print("tried to add a reading session to a book not available in user")
-            return
+            return false
         }
         
         guard let sessionIndex = readingBooks[readingBookIndex].sessions.firstIndex(where: {$0.id == currentReadingSession.id}) else {
             print("tried to add a reading session to a book not available in user")
-            return
+            return false
         }
         
         readingBooks[readingBookIndex].sessions[sessionIndex] = currentReadingSession
         try db.updateReadingSession(session: currentReadingSession)
+        
+        return true
     }
     
     func setPageNumbers(readingBook: ReadingBook, pages: Int) async throws {
