@@ -46,7 +46,7 @@ struct MainTabView: View, BluetoothControllerDelegate {
                 }
             SignInView()
                 .tabItem {
-                    Label("Bookshelf", systemImage: "books.vertical")
+                    Label("User", systemImage: "person.circle")
                 }
             SearchView()
                 .tabItem {
