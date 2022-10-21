@@ -72,7 +72,6 @@ struct ReadingBookView: View {
                 let libraryAPI = SmartLibraryAPI()
                 let authorsArray = try await libraryAPI.getBookAuthors(authorIds: authorIds)
                 authors = authorsArray.map {$0.name}.joined(separator: ", ")
-                print(authors)
             } catch {
                 // Authors will just stay as "-"
             }
