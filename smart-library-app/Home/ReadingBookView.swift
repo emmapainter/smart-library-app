@@ -10,6 +10,7 @@ import SwiftUI
 struct ReadingBookView: View {
     var book: ReadingBook
     @EnvironmentObject private var user: User
+    @State var authors = "-"
     
     var body: some View {
         ZStack(alignment: .center) {
@@ -24,7 +25,7 @@ struct ReadingBookView: View {
                                 .font(.title)
                                 .multilineTextAlignment(.center)
                                 .padding(.top)
-                            Text("-")   // TODO: get authors
+                            Text(authors)   // TODO: get authors
                                 .font(.title2)
                                 .multilineTextAlignment(.center)
                                 .padding(.top, 3.0)
@@ -56,6 +57,25 @@ struct ReadingBookView: View {
                     .foregroundStyle(Color.accentColor, Color.init(red: 238/255, green: 238/255, blue: 240/255, opacity: 1))
             }
             
+        }
+        .onAppear(perform: {
+            getAuthors()
+        })
+    }
+    
+    func getAuthors() {
+        Task {
+            guard let authorIds = book.book.authorIds else {
+                return
+            }
+            do {
+                let libraryAPI = SmartLibraryAPI()
+                let authorsArray = try await libraryAPI.getBookAuthors(authorIds: authorIds)
+                authors = authorsArray.map {$0.name}.joined(separator: ", ")
+                print(authors)
+            } catch {
+                // Authors will just stay as "-"
+            }
         }
     }
 
