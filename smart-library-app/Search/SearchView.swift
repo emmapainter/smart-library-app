@@ -9,17 +9,15 @@ import SwiftUI
 
 struct SearchView: View {
     @State private var searchText = ""
-    @State private var searchType = "My Books"
+    @State private var searchType = "All Books"
     @State var bookSearchResults = [Book]()
     
-    let searchTypes = ["My Books", "All Books", "Users"]
+    let searchTypes = ["All Books"]
     let libraryAPI = SmartLibraryAPI()
     
     func search(for text:  String) {
         switch searchType {
-        case searchTypes[0]:
-            break
-        case searchTypes[1]:
+        case "All Books":
             Task {
                 do {
                     bookSearchResults = try await libraryAPI.searchBooks(searchQuery: text)
@@ -29,7 +27,6 @@ struct SearchView: View {
                 
             }
             break
-        case searchTypes[2]: break
         default:
             break
         }

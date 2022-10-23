@@ -14,6 +14,7 @@ struct BluetoothPairingView: View, BluetoothControllerDelegate {
     @State var bookmarkConnected = false
     @State var bookmarkUUID: UUID?
     @EnvironmentObject private var user: User
+    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     
     var body: some View {
         VStack {
@@ -25,12 +26,13 @@ struct BluetoothPairingView: View, BluetoothControllerDelegate {
                 Text(bookmarkConnected.description)
             }
             .padding(.top, 36.0)
+            if bookmarkConnected {
+                Button(
+                    "Bookmark connected! Tap to go back.",
+                    action: { self.presentationMode.wrappedValue.dismiss() }
+                )
+            }
             
-            Button(action: {
-                BluetoothController.shared.writeOutgoingValue(data: "hello", btDeviceUuid: UUID(uuidString: "8A31C81E-FBA7-DB87-45BE-D53ADA6CCFC7")!)
-            }, label: {
-                Text("Send a message")
-            })
         }
         .onAppear {
             BluetoothController.shared.addDelegate(delegate: self)
@@ -43,5 +45,12 @@ struct BluetoothPairingView: View, BluetoothControllerDelegate {
         bookmarkUUID = deviceUUID
         bookmarkConnected = true
         user.addBookmark(bluetoothIdentifier: btId, bookISBN13: bookIsbn, currentPageNumber: 0)
+    }
+}
+
+
+struct BluetoothPairingView_Previews: PreviewProvider {
+    static var previews: some View {
+        BluetoothPairingView(btId: "123456", bookIsbn: "9781529029581")
     }
 }
